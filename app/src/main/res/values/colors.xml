@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5FCE9B</color>
+    <color name="colorAccent">#555555</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <!--    80%颜色-->
+    <color name="white_translucence_eighty">#CCFFFFFF</color>
+    <color name="black_translucence_eighty">#CC000000</color>
+    <!--    50%颜色-->
+    <color name="white_translucence">#88FFFFFF</color>
+    <color name="black_translucence">#88000000</color>
+    <!--    30%颜色-->
+    <color name="white_translucence_thirty">#4CFFFFFF</color>
+    <color name="black_translucence_thirty">#4C000000</color>
+</resources>
