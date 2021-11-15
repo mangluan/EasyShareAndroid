@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.easyshare.database.dao.UserInfoDAO;
 import com.easyshare.database.database.EasyShareDatabase;
-import com.easyshare.database.entity.UserInfoEntity;
+import com.easyshare.entity.UserInfoEntity;
 
 public class UserInfoRepository {
 

@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.easyshare.database.dao.UserInfoDAO;
-import com.easyshare.database.entity.UserInfoEntity;
+import com.easyshare.entity.UserInfoEntity;
 
 
 @Database(entities = {UserInfoEntity.class}, version = 1, exportSchema = false)

@@ -4,7 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 
-import com.easyshare.database.entity.UserInfoEntity;
+import com.easyshare.entity.UserInfoEntity;
 
 @Dao
 public interface UserInfoDAO {

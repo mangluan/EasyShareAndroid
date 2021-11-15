@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -14,35 +17,77 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_config"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EasyShare">
-
-        <activity android:name=".activity.MainActivity">
+        android:theme="@style/Theme.EasyShare.Launcher">
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="locked">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.OnBoardingActivity"
+            android:label="引导流程"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.EasyShare.LightGrayWindowBackground">
 
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="登录注册"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.EasyShare.LightGrayStatusBar" />
+        <activity
+            android:name=".activity.WebActivity"
+            android:label="网页"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.EasyShare.WhiteTheme" />
+        <activity
+            android:name=".activity.ImproveUserDataActivity"
+            android:label="初始化用户信息"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.EasyShare.LightGrayStatusBar" />
+        <activity
+            android:name=".activity.AccountSecurityActivity"
+            android:label="用户安全"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.EasyShare.WhiteTheme.LightGrayWindowBackground" />
+        <activity
+            android:name=".activity.AboutSoftwareActivity"
+            android:label="关于软件"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.EasyShare.WhiteTheme" />
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:label="软件升级"
+            android:screenOrientation="locked"
             android:theme="@android:style/Theme.Translucent" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:label="图片剪裁"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.EasyShare.CropImage" />
 
-<!--        <provider-->
-<!--            android:name="androidx.core.content.FileProvider"-->
-<!--            android:authorities="${applicationId}.fileProvider"-->
-<!--            android:exported="false"-->
-<!--            android:grantUriPermissions="true">-->
-<!--            <meta-data-->
-<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
-<!--                android:resource="@xml/provider_paths"/>-->
-<!--        </provider>-->
-
-
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.easyshare.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

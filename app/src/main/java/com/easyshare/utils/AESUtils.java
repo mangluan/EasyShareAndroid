@@ -17,9 +17,9 @@ public class AESUtils {
     // 算法/模式/填充
     private static final String CipherMode = "AES/CBC/PKCS5Padding";
     // 约定的key
-    private static final String key = "RCMX1kDD7I4nVp79";
+    private static final String key = "RCMX1X1D7I4nVp79";
     // 约定的iv
-    private static final String iv = "kPTrXtK331rf2JWe";
+    private static final String iv = "kPTrX123S1rf2JWe";
 
     /***************************************************************************/
 
@@ -98,21 +98,6 @@ public class AESUtils {
             e.printStackTrace();
         }
         return null;
-    }
-
-    /****************************************************************************/
-
-    /**
-     * 参数解密
-     *
-     * @param datas 加密参数
-     * @return 解密参数
-     */
-    public synchronized static String decryptParam(String datas) {
-        if (datas == null) return "";
-        // beas转码  aes解密
-        byte[] bytes = decrypt(Base64.decode(datas, Base64.NO_WRAP));
-        return URLDecoder.decode(new String(bytes));
     }
 
 

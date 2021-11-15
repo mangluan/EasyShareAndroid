@@ -5,6 +5,7 @@ public interface ValueCallBack<T> {
 
     void onSuccess(T t);
 
-    void onFail(String code);
+    default void onFail(String code) {
+    }
 
 }

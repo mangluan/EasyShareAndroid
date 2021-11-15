@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.user.ImproveUserDataFragment">
+
+    <View
+        android:id="@+id/title_background"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/light_gray"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/skip_btn"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/skip"
+        android:textColor="@color/black_translucence_eighty"
+        app:layout_constraintBottom_toBottomOf="@+id/title_background"
+        app:layout_constraintEnd_toEndOf="@+id/title_background"
+        app:rippleColor="#11000000" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/SmartRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_background"
+        app:srlEnablePureScrollMode="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rootConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="16dp">
+
+            <TextView
+                android:id="@+id/improve_user_data_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/set_user_data"
+                android:textColor="@color/black_translucence_eighty"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="60dp"
+                android:src="@mipmap/ic_launcher"
+                app:cardCornerRadius="45dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/improve_user_data_title">
+
+                <ImageView
+                    android:id="@+id/avatar_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/img_default_avatar" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/avatar_hint"
+                android:layout_marginTop="6dp"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/avatar_image_hint"
+                app:layout_constraintEnd_toEndOf="@+id/card_view"
+                app:layout_constraintStart_toStartOf="@+id/card_view"
+                app:layout_constraintTop_toBottomOf="@+id/card_view" />
+
+            <EditText
+                android:id="@+id/name_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="48dp"
+                android:hint="@string/user_name_hint"
+                android:inputType="text"
+                android:maxLength="16"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_view" />
+
+            <Button
+                android:id="@+id/sex_btn"
+                style="@style/SpinnerButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/sex"
+                app:layout_constraintEnd_toStartOf="@+id/card_view"
+                app:layout_constraintStart_toStartOf="@+id/name_edit"
+                app:layout_constraintTop_toBottomOf="@+id/name_edit" />
+
+            <Button
+                android:id="@+id/birthday_btn"
+                style="@style/SpinnerButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/birthday"
+                app:layout_constraintEnd_toEndOf="@+id/name_edit"
+                app:layout_constraintStart_toEndOf="@+id/sex_btn"
+                app:layout_constraintTop_toTopOf="@+id/sex_btn" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/confirm_btn"
+                android:layout_marginTop="60dp"
+                android:text="@string/confirm"
+                app:layout_constraintEnd_toEndOf="@+id/name_edit"
+                app:layout_constraintStart_toStartOf="@+id/name_edit"
+                app:layout_constraintTop_toBottomOf="@+id/sex_btn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

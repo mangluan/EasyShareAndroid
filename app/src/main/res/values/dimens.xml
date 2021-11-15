@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tutorial_shared_element_translate_y">56dp</dimen>
+    <dimen name="dp4">4dp</dimen>
+    <dimen name="dp32">32dp</dimen>
+    <dimen name="dp28">28dp</dimen>
+</resources>

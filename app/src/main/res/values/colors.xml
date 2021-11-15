@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#5FCE9B</color>
+    <color name="colorPrimaryVariant">#F7B52C</color>
     <color name="colorAccent">#555555</color>
 
     <color name="white">#FFFFFFFF</color>
@@ -14,4 +15,10 @@
     <!--    30%颜色-->
     <color name="white_translucence_thirty">#4CFFFFFF</color>
     <color name="black_translucence_thirty">#4C000000</color>
+
+    <color name="textColor">#8A8A8A</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="light_gray">#EEEEEE</color>
+
+    <color name="main_navigation">#FBFBFB</color>
 </resources>

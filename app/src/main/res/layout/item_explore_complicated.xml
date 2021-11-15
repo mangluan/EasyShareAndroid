@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    android:background="@color/white"
+    android:padding="12dp">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/head_layout"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        app:cardCornerRadius="27dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/head_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:src="@mipmap/ic_launcher" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:minWidth="120dp"
+        android:textColor="@color/black_translucence_eighty"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/time_tv"
+        app:layout_constraintStart_toEndOf="@+id/head_layout"
+        app:layout_constraintTop_toTopOf="@+id/head_layout"
+        tools:text="Test user name" />
+
+    <TextView
+        android:id="@+id/time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:minWidth="60dp"
+        android:textColor="@color/black_translucence"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/head_layout"
+        app:layout_constraintStart_toEndOf="@+id/head_layout"
+        app:layout_constraintTop_toBottomOf="@+id/name_tv"
+        tools:text="4 minutes ago" />
+
+    <TextView
+        android:id="@+id/content_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="12dp"
+        android:minWidth="120dp"
+        android:textColor="@color/black_translucence_eighty"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/head_layout"
+        tools:text="Today is a great day. " />
+
+    <ImageView
+        android:id="@+id/image_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintEnd_toStartOf="@+id/image_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/content_tv"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/image_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="4dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintEnd_toStartOf="@+id/image_3"
+        app:layout_constraintStart_toEndOf="@+id/image_1"
+        app:layout_constraintTop_toTopOf="@+id/image_1"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/image_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image_2"
+        app:layout_constraintTop_toTopOf="@+id/image_2"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+
+    <ImageView
+        android:id="@+id/image_4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintEnd_toEndOf="@+id/image_1"
+        app:layout_constraintStart_toStartOf="@+id/image_1"
+        app:layout_constraintTop_toBottomOf="@+id/image_1"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/image_5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintEnd_toEndOf="@+id/image_2"
+        app:layout_constraintStart_toStartOf="@+id/image_2"
+        app:layout_constraintTop_toTopOf="@+id/image_4"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/image_6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintEnd_toEndOf="@id/image_3"
+        app:layout_constraintStart_toStartOf="@+id/image_3"
+        app:layout_constraintTop_toTopOf="@+id/image_5"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <View
+        android:id="@+id/cut_off_rule_2"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginVertical="12dp"
+        android:background="#EEEEEE"
+        android:elevation="1px"
+        app:layout_constraintTop_toBottomOf="@id/image_4"
+        tools:layout_height="2dp" />
+
+    <TextView
+        android:id="@+id/share_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:drawablePadding="6dp"
+        android:paddingHorizontal="12dp"
+        android:text="转发"
+        android:textColor="@color/black_translucence"
+        app:drawableStartCompat="@drawable/ic_share_18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/image_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cut_off_rule_2" />
+
+    <TextView
+        android:id="@+id/comment_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:drawablePadding="6dp"
+        android:paddingHorizontal="12dp"
+        android:text="评论"
+        android:textColor="@color/black_translucence"
+        app:drawableStartCompat="@drawable/ic_comment_18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cut_off_rule_2" />
+
+    <TextView
+        android:id="@+id/like_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:drawablePadding="6dp"
+        android:paddingHorizontal="12dp"
+        android:text="点赞"
+        android:textColor="@color/black_translucence"
+        app:drawableStartCompat="@drawable/ic_like_18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/image_3"
+        app:layout_constraintTop_toBottomOf="@+id/cut_off_rule_2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

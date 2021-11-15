@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    tools:context=".fragment.onboarding.OnBoardingOneFragment">
+
+    <ImageView
+        android:id="@+id/deviceImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="60dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_onboarding_one" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginVertical="64dp"
+        android:clipToPadding="false"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/deviceImage"
+        app:layout_constraintEnd_toEndOf="@+id/deviceImage"
+        app:layout_constraintStart_toStartOf="@+id/deviceImage"
+        app:layout_constraintTop_toTopOf="@+id/deviceImage">
+
+        <ImageView
+            android:id="@+id/sharedImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_onboarding_shared"
+            android:tag="shared_element" />
+
+        <TextView
+            android:id="@+id/deviceText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="今天我去了上原代代木新开的上原咖啡馆。因为今天是盛大的开业典礼，那里有很多人。最近，许多著名的商店从夏威夷一个接一个地来到日本。我个人觉得这些煎饼现在太热了。"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

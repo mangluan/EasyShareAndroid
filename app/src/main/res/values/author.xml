@@ -1,0 +1,9 @@
+<resources>
+    <string name="author_title_1">作者信息：</string>
+    <string name="author_name">郭子信</string>
+    <string name="author_school">2018级计算机科学与技术\n湖南涉外经济学院</string>
+    <string name="author_title_2">邮箱：</string>
+    <string name="author_mail">508342550@qq.com</string>
+    <string name="author_title_3">微信：</string>
+    <string name="author_wechat">MangLuan-</string>
+</resources>
