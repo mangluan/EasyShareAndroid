@@ -26,6 +26,8 @@ import com.easyshare.R;
 import com.easyshare.activity.ImproveUserDataActivity;
 import com.easyshare.activity.WebActivity;
 import com.easyshare.base.BaseFragment;
+import com.easyshare.base.RxjavaResponse;
+import com.easyshare.base.RxjavaThrowable;
 import com.easyshare.base.SimpleTextWatcher;
 import com.easyshare.network.Constants;
 import com.easyshare.network.RetrofitFactory;
@@ -274,8 +276,8 @@ public class LoginFragment extends BaseFragment {
      * 点击用户协议
      */
     @OnClick(R.id.user_agreement_btn)
-    public void onUserAgreementClick(){
-        WebActivity.startActivity(getContext(),"file:android_asset/用户协议.html");
+    public void onUserAgreementClick() {
+        WebActivity.startActivity(getContext(), "file:android_asset/用户协议.html");
     }
 
     /**
@@ -300,10 +302,8 @@ public class LoginFragment extends BaseFragment {
                                 ToastUtils.show(resp.getMsg());
                             }
                             mSubmitButton.setEnabled(true);
-                        }, throwable -> {   // 出错回调
+                        }, (RxjavaThrowable) throwable -> {   // 出错回调
                             mSubmitButton.setEnabled(true);
-                            throwable.printStackTrace();
-                            ToastUtils.show(R.string.error_network);
                         });
                 break;
             case AUTH_CODE_LOGIN: // 验证码登录
@@ -325,9 +325,7 @@ public class LoginFragment extends BaseFragment {
                                 getActivity().finish();
                             }
                             mSubmitButton.setEnabled(true);
-                        }, throwable -> {   // 出错回调
-                            mSubmitButton.setEnabled(true);
-                            ToastUtils.show(getString(R.string.error_network));
+                        }, (RxjavaThrowable) throwable -> {   // 出错回调
                         });
                 break;
             case PASSWORD_LOGIN: // 密码登录
@@ -348,9 +346,8 @@ public class LoginFragment extends BaseFragment {
 //                                ImproveUserDataActivity.startActivity(getContext());
                                 mSubmitButton.setEnabled(true);
                             }
-                        }, throwable -> {   // 出错回调
+                        }, (RxjavaThrowable) throwable -> {   // 出错回调
                             mSubmitButton.setEnabled(true);
-                            ToastUtils.show(getString(R.string.error_network));
                         });
                 break;
         }

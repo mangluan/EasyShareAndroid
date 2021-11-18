@@ -6,6 +6,7 @@
     <string name="successfully_logout">退出登录成功</string>
     <string name="successfully_clear_cache">清理成功</string>
     <string name="error_network">网络不通畅哦~</string>
+    <string name="error_login">暂未登录</string>
     <string name="error_set_content">没有设置任何内容哦~</string>
     <string name="error_web_source">链接有问题，请稍后重试！</string>
 
@@ -28,6 +29,7 @@
     <string name="password">密码</string>
     <string name="user_agreement_hint">登录即代表您已同意</string>
     <string name="user_agreement">用户协议</string>
+    <string name="user_name_format">用户%04d</string>
     <string name="login">登录</string>
     <string name="logout">退出登录</string>
     <string name="set_user_data">设置用户信息</string>
@@ -43,6 +45,7 @@
     <string name="sex_woman">女</string>
     <string name="date_format_save">%d-%02d-%02d</string>
     <string name="date_format_show">%s年%s月%s日</string>
+    <string name="date_format_timestamp">yyyy年MM月dd日 hh:mm</string>
     <string name="photos">图库</string>
     <string name="camera">拍照</string>
     <string name="loading_hint">正在上传：%d%%</string>
@@ -70,9 +73,21 @@
     <string name="shielding_management">屏蔽管理</string>
     <string name="clear_cache">清理缓存</string>
     <string name="clear_cache_hint">您确定要清除缓存吗？</string>
-    <string name="clear_cacheing">清理中...</string>
+    <string name="clearing_cache">清理中…</string>
     <string name="about_software">关于软件</string>
     <string name="about_author">关于作者</string>
     <string name="check_updates">检查更新</string>
+    <string name="user_info">个人信息</string>
+    <string name="modify_password">修改密码</string>
+    <string name="bind_mailbox">绑定邮箱</string>
+    <string name="login_record">登录记录</string>
+    <string name="comment">评论</string>
+    <string name="share">分享</string>
+    <string name="sign_format">简介：%s</string>
+    <string name="sign_null">暂无简介</string>
+    <string name="friend">互相关注</string>
+    <string name="cancel_attention">取消关注</string>
+    <string name="cancel_attention_hint">您确定要取消关注[%s]吗？</string>
+    <string name="append_attention">添加关注</string>
 
 </resources>

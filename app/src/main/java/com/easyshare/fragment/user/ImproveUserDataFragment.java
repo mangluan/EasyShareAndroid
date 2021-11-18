@@ -25,6 +25,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.easyshare.R;
 import com.easyshare.base.BaseFragment;
+import com.easyshare.base.RxjavaResponse;
+import com.easyshare.base.RxjavaThrowable;
 import com.easyshare.base.ValueCallBack;
 import com.easyshare.network.RetrofitFactory;
 import com.easyshare.utils.FileUtils;
@@ -120,14 +122,13 @@ public class ImproveUserDataFragment extends BaseFragment implements OnPermissio
                     .subscribeOn(Schedulers.io()) // 子线程执行方法
                     .observeOn(AndroidSchedulers.mainThread()) // 主线程回调
                     .subscribe(resp -> {   // 成功回调
+                        RxjavaResponse.authentication(resp,getContext());
                         if (resp.getCode() == 0) {
                             ToastUtils.show(R.string.successfully_modify);
                         } else {
                             ToastUtils.show(resp.getMsg());
                         }
-                    }, throwable -> {   // 出错回调
-                        throwable.printStackTrace();
-                        ToastUtils.show(R.string.error_network);
+                    }, (RxjavaThrowable) throwable -> {   // 出错回调
                     });
             mDisposables.add(subscribe);
         });
@@ -249,7 +250,7 @@ public class ImproveUserDataFragment extends BaseFragment implements OnPermissio
     private void uploadFiles(Uri uri) {
         LoadingPopupView loadingPopupView = new XPopup.Builder(getContext()).asLoading(null, R.layout.view_loading);
         OSSUtils.addProgressCallBack(progress -> loadingPopupView.setTitle(getString(R.string.loading_hint, progress)).show());
-        OSSUtils.uploadImage(uri, "avatar/" + UserUtils.getsInstance().getUserInfo().getUserId() + "/img_"  + new Date().getTime() + ".png",
+        OSSUtils.uploadImage(uri, "avatar/" + UserUtils.getsInstance().getUserInfo().getUserId() + "/img_" + new Date().getTime() + ".png",
                 new ValueCallBack<String>() {
 
                     @Override
@@ -313,15 +314,14 @@ public class ImproveUserDataFragment extends BaseFragment implements OnPermissio
                 .subscribeOn(Schedulers.io()) // 子线程执行方法
                 .observeOn(AndroidSchedulers.mainThread()) // 主线程回调
                 .subscribe(resp -> {   // 成功回调
+                    RxjavaResponse.authentication(resp,getContext());
                     if (resp.getCode() == 0) {
                         ToastUtils.show(R.string.successfully_modify);
                         getActivity().finish();
                     } else {
                         ToastUtils.show(resp.getMsg());
                     }
-                }, throwable -> {   // 出错回调
-                    throwable.printStackTrace();
-                    ToastUtils.show(R.string.error_network);
+                }, (RxjavaThrowable) throwable -> {   // 出错回调
                 });
         mDisposables.add(subscribe);
     }

@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="36dp"
         android:layout_marginTop="6dp"
-        android:text="@string/mail"
+        android:text="@string/author_mail"
         android:textColor="@color/black_translucence"
         android:textIsSelectable="true"
         android:textSize="16sp" />

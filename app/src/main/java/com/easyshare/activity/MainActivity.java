@@ -1,6 +1,7 @@
 package com.easyshare.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,10 +10,20 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.easyshare.R;
+import com.easyshare.base.RxjavaResponse;
 import com.easyshare.fragment.main.ExploreFragment;
 import com.easyshare.fragment.main.HomepageFragment;
 import com.easyshare.fragment.main.MeFragment;
+import com.easyshare.network.Constants;
+import com.easyshare.network.RetrofitFactory;
+import com.easyshare.utils.SharedPreferenceUtils;
+import com.easyshare.utils.UserUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.hjq.toast.ToastUtils;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         // initialize view
         mViewPager = findViewById(R.id.view_pager);
         mViewPager.setUserInputEnabled(false);  // 拒绝翻页
+        mViewPager.setOffscreenPageLimit(3);
         mBottomNavigationView = findViewById(R.id.nav_view);
         // initialize Fragment
         mFragments = new Fragment[]{

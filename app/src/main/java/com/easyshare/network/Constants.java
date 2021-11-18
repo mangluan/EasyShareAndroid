@@ -1,7 +1,5 @@
 package com.easyshare.network;
 
-import com.easyshare.entity.UserInfoEntity;
-
 public class Constants {
 
     public static final int LOGIN_SUCCESSFULLY = 0x0001;
@@ -24,5 +22,14 @@ public class Constants {
     public static final String URL_USER_LOGIN_FOR_TOKEN = "/user/loginForToken"; // 通过登录令牌登录
     public static final String URL_USER_SEND_AUTH_CODE = "/user/sendAuthCode"; // 发送验证码
     public static final String URL_USER_CHANGE_INFO = "/user/changeUserInfo"; // 修改用户信息
+    public static final String URL_USER_GET_ATTENTION_LIST = "/user/getUserAttentionList"; // 获取用户关注列表
+    public static final String URL_USER_GET_FANS_LIST = "/user/getUserFansList"; // 获取用户关注列表
+    public static final String URL_USER_GET_LOGIN_RECORD_LIST = "/user/getLoginRecord"; // 获取用户登录记录
+    public static final String URL_USER_APPEND_ATTENTION = "/user/appendAttention"; // 添加关注
+    public static final String URL_USER_CANCEL_ATTENTION = "/user/cancelAttention"; // 添加关注
+    public static final String URL_USER_MORE_INFO = "/user/getMoreUserInfo"; // 获取浏览、关注、粉丝数量
+
+    /* ----------------  album -----------------------*/
+    public static final String URL_ALBUM_GET_ALL_LIST = "/album/getAllAlbum"; // 获取全部图册
 
 }

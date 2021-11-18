@@ -1,8 +1,15 @@
 package com.easyshare.entity;
 
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.util.StringUtil;
+
+import com.hjq.toast.ToastUtils;
 
 import java.util.Date;
 
@@ -21,10 +28,17 @@ public class UserInfoEntity {
     private String phone;
     private String registrationDate;
 
-    /** 足迹、关注、粉丝 */
+    /**
+     * 足迹、关注、粉丝
+     */
     private int browsingCount;
     private int attentionCount;
     private int fansCount;
+
+    /**
+     * 是否互关好友
+     */
+    private int isFriend;
 
     public UserInfoEntity() {
     }
@@ -49,6 +63,18 @@ public class UserInfoEntity {
         return fansCount;
     }
 
+    public int getIsFriend() {
+        return isFriend;
+    }
+
+    public boolean isFriend() {
+        return isFriend == 1;
+    }
+
+    public void setIsFriend(int isFriend) {
+        this.isFriend = isFriend;
+    }
+
     public void setFansCount(int fansCount) {
         this.fansCount = fansCount;
     }
@@ -70,7 +96,7 @@ public class UserInfoEntity {
     }
 
     public String getName() {
-        return name;
+        return TextUtils.isEmpty(name) ? String.format("用户%04d", userId) : name;
     }
 
     public void setName(String name) {
@@ -140,6 +166,7 @@ public class UserInfoEntity {
                 ", browsingCount=" + browsingCount +
                 ", attentionCount=" + attentionCount +
                 ", fansCount=" + fansCount +
+                ", isFriend=" + (isFriend == 1) +
                 '}';
     }
 

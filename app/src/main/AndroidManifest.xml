@@ -58,10 +58,20 @@
             android:screenOrientation="locked"
             android:theme="@style/Theme.EasyShare.LightGrayStatusBar" />
         <activity
+            android:name=".activity.FriendsActivity"
+            android:label="关注|粉丝"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.EasyShare.WhiteTheme.LightGrayWindowBackground" />
+        <activity
             android:name=".activity.AccountSecurityActivity"
             android:label="用户安全"
             android:screenOrientation="locked"
             android:theme="@style/Theme.EasyShare.WhiteTheme.LightGrayWindowBackground" />
+        <activity
+            android:name=".activity.LoginRecordActivity"
+            android:label="登录记录"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.EasyShare.WhiteTheme" />
         <activity
             android:name=".activity.AboutSoftwareActivity"
             android:label="关于软件"

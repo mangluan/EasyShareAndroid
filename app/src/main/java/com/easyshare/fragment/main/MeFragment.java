@@ -1,9 +1,10 @@
 package com.easyshare.fragment.main;
 
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,16 @@ import com.bumptech.glide.Glide;
 import com.easyshare.R;
 import com.easyshare.activity.AboutSoftwareActivity;
 import com.easyshare.activity.AccountSecurityActivity;
+import com.easyshare.activity.FriendsActivity;
 import com.easyshare.activity.LoginActivity;
 import com.easyshare.base.BaseDataBean;
+import com.easyshare.base.BaseException;
 import com.easyshare.base.BaseFragment;
+import com.easyshare.base.RxjavaResponse;
+import com.easyshare.base.RxjavaThrowable;
 import com.easyshare.entity.UserInfoEntity;
 import com.easyshare.network.Constants;
+import com.easyshare.network.RetrofitFactory;
 import com.easyshare.utils.GlideCatchUtil;
 import com.easyshare.utils.SharedPreferenceUtils;
 import com.easyshare.utils.UserUtils;
@@ -35,6 +41,9 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 @SuppressLint("NonConstantResourceId")
 public class MeFragment extends BaseFragment {
@@ -73,6 +82,10 @@ public class MeFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(MeViewModel.class);
+        // 如果有登录，则直接更新页面
+        if (UserUtils.getsInstance().isLogin()) {
+            onLogin(BaseDataBean.build(Constants.LOGIN_SUCCESSFULLY, UserUtils.getsInstance().getUserInfo()));
+        }
     }
 
     /**
@@ -82,6 +95,37 @@ public class MeFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         initCacheSize();
+        initAttentionAndFans();
+    }
+
+    /**
+     * 初始化 浏览记录、关注、粉丝 数量
+     */
+    private void initAttentionAndFans() {
+        if (UserUtils.getsInstance().isLogin()) {
+            Disposable subscribe = RetrofitFactory.getsInstance(getContext())
+                    .getMoreUserInfo()
+                    .subscribeOn(Schedulers.io()) // 子线程执行方法
+                    .observeOn(AndroidSchedulers.mainThread()) // 主线程回调
+                    .subscribe(resp -> {   // 成功回调
+                        RxjavaResponse.authentication(resp, getContext());
+                        if (resp.getCode() == 0) {
+                            UserInfoEntity userInfoEntity = resp.getData();
+                            mBrowsingCountTextView.setText(String.valueOf(userInfoEntity.getBrowsingCount()));
+                            mAttentionCountTextView.setText(String.valueOf(userInfoEntity.getAttentionCount()));
+                            mFansCountTextView.setText(String.valueOf(userInfoEntity.getFansCount()));
+                        } else {
+                            throw new BaseException(resp.getMsg());
+                        }
+                    }, (RxjavaThrowable) throwable -> { // 出错了继续调用
+                        initAttentionAndFans();
+                    });
+            mDisposables.add(subscribe);
+        } else {  // 没有登录，查询本地数据库的历史浏览记录
+            mBrowsingCountTextView.setText(R.string.text_zero);
+            mAttentionCountTextView.setText(R.string.text_null);
+            mFansCountTextView.setText(R.string.text_null);
+        }
     }
 
     /**
@@ -113,14 +157,10 @@ public class MeFragment extends BaseFragment {
             UserInfoEntity user = dataBean.getData();
             if (user != null) { // 填充用户信息
                 mLogoutButton.setVisibility(View.VISIBLE);
-                Glide.with(this).load(user.getAvatarImage()).into(mAvatarImageView);
+                Glide.with(this).load(user.getAvatarImage())
+                        .transition(withCrossFade()).into(mAvatarImageView);
                 mUserNameTextView.setText(user.getName());
-                // 如果有签名，则显示签名，如果没有签名则显示邮件
-                mTitleSubheadingTextView.setText(TextUtils.isEmpty(user.getSign()) ? user.getEmail() : user.getSign());
-                // TODO 整合本地记录
-                mBrowsingCountTextView.setText(String.valueOf(user.getBrowsingCount()));
-                mAttentionCountTextView.setText(String.valueOf(user.getAttentionCount()));
-                mFansCountTextView.setText(String.valueOf(user.getFansCount()));
+                mTitleSubheadingTextView.setText(getString(R.string.sign_format, TextUtils.isEmpty(user.getSign()) ? getString(R.string.sign_null) : user.getSign()));
             }
         }
     }
@@ -132,13 +172,10 @@ public class MeFragment extends BaseFragment {
     public void onLogout(BaseDataBean<Void> dataBean) {
         if (dataBean.getCode() == Constants.LOGOUT) { // 删除用户信息
             mLogoutButton.setVisibility(View.GONE);
-            Glide.with(this).load(R.drawable.img_default_avatar).into(mAvatarImageView);
+            Glide.with(this).load(R.drawable.img_default_avatar)
+                    .transition(withCrossFade()).into(mAvatarImageView);
             mUserNameTextView.setText(R.string.not_login_name);
             mTitleSubheadingTextView.setText(R.string.not_login_subheading);
-            // TODO 直接加载本地记录
-            mBrowsingCountTextView.setText(R.string.text_zero);
-            mAttentionCountTextView.setText(R.string.text_null);
-            mFansCountTextView.setText(R.string.text_null);
         }
     }
 
@@ -170,7 +207,12 @@ public class MeFragment extends BaseFragment {
      */
     @OnClick(R.id.attention_button)
     public void onAttentionClick() {
-        ToastUtils.show("关注");
+        if (UserUtils.getsInstance().isLogin()) {
+            FriendsActivity.startActivity(getContext(), FriendsActivity.FriendsType.ATTENTION,
+                    UserUtils.getsInstance().getUserInfo().getAttentionCount());
+        } else {
+            ToastUtils.show(R.string.error_login);
+        }
     }
 
     /**
@@ -178,7 +220,12 @@ public class MeFragment extends BaseFragment {
      */
     @OnClick(R.id.fans_button)
     public void onFansClick() {
-        ToastUtils.show("粉丝");
+        if (UserUtils.getsInstance().isLogin()) {
+            FriendsActivity.startActivity(getContext(), FriendsActivity.FriendsType.FANS,
+                    UserUtils.getsInstance().getUserInfo().getAttentionCount());
+        } else {
+            ToastUtils.show(R.string.error_login);
+        }
     }
 
     /**
@@ -210,7 +257,11 @@ public class MeFragment extends BaseFragment {
      */
     @OnClick(R.id.account_security_layout)
     public void onAccountSecurityClick() {
-        AccountSecurityActivity.startActivity(getContext());
+        if (UserUtils.getsInstance().isLogin()) {
+            AccountSecurityActivity.startActivity(getContext());
+        } else {
+            ToastUtils.show(R.string.error_login);
+        }
     }
 
     /**
@@ -240,7 +291,7 @@ public class MeFragment extends BaseFragment {
                             GlideCatchUtil.getInstance().clearCacheMemory(getContext());
                             GlideCatchUtil.getInstance().clearCacheDiskSelf(getContext());
                             new XPopup.Builder(getContext()).asLoading(null, R.layout.view_loading)
-                                    .setTitle(getString(R.string.clear_cacheing)).show().delayDismissWith(1200, () -> {
+                                    .setTitle(getString(R.string.clearing_cache)).show().delayDismissWith(1200, () -> {
                                 initCacheSize();
                                 ToastUtils.show(R.string.successfully_clear_cache);
                             });
@@ -252,7 +303,7 @@ public class MeFragment extends BaseFragment {
      * 点击关于软件
      */
     @OnClick(R.id.about_software_layout)
-    public void onAboutSoftware(){
+    public void onAboutSoftware() {
         AboutSoftwareActivity.startActivity(getContext());
     }
 

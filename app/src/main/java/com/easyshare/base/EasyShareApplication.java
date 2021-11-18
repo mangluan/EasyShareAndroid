@@ -18,6 +18,7 @@ import com.tencent.bugly.beta.upgrade.UpgradeStateListener;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class EasyShareApplication extends Application {
@@ -58,11 +59,11 @@ public class EasyShareApplication extends Application {
                     .subscribe(resp -> {   // 成功回调
                         if (resp.getCode() == 0) {
                             UserUtils.getsInstance().login(resp.getData());
-                        }else {
-                            ToastUtils.show(getString(R.string.login_overdue));
+                        } else {
+                            ToastUtils.show(R.string.login_overdue);
                             SharedPreferenceUtils.putString(this, Constants.TOKEN, "");
                         }
-                    });
+                    }, Throwable::printStackTrace);
         }
     }
 
