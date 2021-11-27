@@ -68,6 +68,16 @@
             android:screenOrientation="locked"
             android:theme="@style/Theme.EasyShare.WhiteTheme.LightGrayWindowBackground" />
         <activity
+            android:name=".activity.PersonalInformationActivity"
+            android:label="个人信息"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.EasyShare.WhiteTheme.LightGrayWindowBackground" />
+        <activity
+            android:name=".activity.ChangePasswordActivity"
+            android:label="修改密码"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.EasyShare.WhiteTheme.LightGrayWindowBackground" />
+        <activity
             android:name=".activity.LoginRecordActivity"
             android:label="登录记录"
             android:screenOrientation="locked"

@@ -89,5 +89,17 @@
     <string name="cancel_attention">取消关注</string>
     <string name="cancel_attention_hint">您确定要取消关注[%s]吗？</string>
     <string name="append_attention">添加关注</string>
+    <string name="user_name">昵称</string>
+    <string name="sign">简介</string>
+    <string name="avatar">头像</string>
+    <string name="update_avatar">修改头像</string>
+    <string name="update_sex">修改性别</string>
+    <string name="update_birthday">修改生日</string>
+    <string name="avatar_format">avatar/%d/img_%d.png</string>
+    <string name="update_user_name">更新昵称</string>
+    <string name="set_sign">设置简介</string>
+    <string name="update_sign">更新简介</string>
+    <string name="sign_hint">请输入个人简介~</string>
+    <string name="nav_information">消息</string>
 
 </resources>

@@ -12,7 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.easyshare.R;
+import com.easyshare.activity.ChangePasswordActivity;
 import com.easyshare.activity.LoginRecordActivity;
+import com.easyshare.activity.PersonalInformationActivity;
 import com.easyshare.base.BaseFragment;
 import com.easyshare.entity.UserInfoEntity;
 import com.easyshare.utils.UserUtils;
@@ -47,7 +49,7 @@ public class AccountSecurityFragment extends BaseFragment {
         if (userInfo != null) {
             String[] split = userInfo.getEmail().split("@");
             mMailTextView.setText(split[0].length() > 3 ? split[0].substring(0, 3) + "***@" + split[1] : userInfo.getEmail());
-        } 
+        }
     }
 
     /**
@@ -55,7 +57,7 @@ public class AccountSecurityFragment extends BaseFragment {
      */
     @OnClick(R.id.user_info_layout)
     public void onUserInfoClick() {
-        ToastUtils.show("个人信息");
+        PersonalInformationActivity.startActivity(getContext());
     }
 
     /**
@@ -63,7 +65,7 @@ public class AccountSecurityFragment extends BaseFragment {
      */
     @OnClick(R.id.modify_password_layout)
     public void onModifyPasswordClick() {
-        ToastUtils.show("修改密码");
+        ChangePasswordActivity.startActivity(getContext());
     }
 
     /**

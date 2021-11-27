@@ -1,17 +1,20 @@
 package com.easyshare.fragment.main;
 
+import androidx.lifecycle.ViewModelProvider;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.easyshare.R;
 import com.easyshare.base.BaseFragment;
@@ -29,43 +32,44 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class ExploreRecommendGroupFragment extends BaseFragment {
+@SuppressLint("NonConstantResourceId")
+public class ExploreParentFragment extends BaseFragment {
 
-    private ExploreRecommendGroupViewModel mViewModel;
+    private ExploreParentViewModel mViewModel;
 
     @BindView(R.id.magic_indicator)
     MagicIndicator mIndicator;
+
     @BindView(R.id.view_pager)
     ViewPager2 mViewPager;
 
-
-    public static ExploreRecommendGroupFragment newInstance() {
-        return new ExploreRecommendGroupFragment();
+    public static ExploreParentFragment newInstance() {
+        return new ExploreParentFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_explore_recommend_group, container, false);
+        return inflater.inflate(R.layout.fragment_explore_parent, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ExploreRecommendGroupViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(ExploreParentViewModel.class);
         // 初始化ViewPag
         Fragment[] fragments = new Fragment[]{
-                ExploreRecommendFragment.newInstance(),   // 推荐
-                ExploreRecommendFragment.newInstance(),   // 推荐
-                ExploreRecommendFragment.newInstance(),   // 推荐
-                ExploreRecommendFragment.newInstance(),   // 推荐
-                ExploreRecommendFragment.newInstance(),   // 推荐
-                ExploreRecommendFragment.newInstance(),   // 推荐
-                ExploreRecommendFragment.newInstance(),   // 推荐
-                ExploreRecommendFragment.newInstance(),   // 推荐
-                ExploreRecommendFragment.newInstance(),   // 推荐
-                ExploreRecommendFragment.newInstance(),   // 推荐
-                ExploreRecommendFragment.newInstance()   // 推荐
+                ExploreFragment.newInstance(),   // TODO
+                ExploreFragment.newInstance(),
+                ExploreFragment.newInstance(),
+                ExploreFragment.newInstance(),
+                ExploreFragment.newInstance(),
+                ExploreFragment.newInstance(),
+                ExploreFragment.newInstance(),
+                ExploreFragment.newInstance(),
+                ExploreFragment.newInstance(),
+                ExploreFragment.newInstance(),
+                ExploreFragment.newInstance()
         };
 //        mViewPager.setAdapter(new FragmentStateAdapter(getChildFragmentManager(),getLifecycle()) {
         mViewPager.setAdapter(new FragmentStateAdapter(this) {

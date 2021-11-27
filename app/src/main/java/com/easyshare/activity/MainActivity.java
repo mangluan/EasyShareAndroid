@@ -12,7 +12,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.easyshare.R;
 import com.easyshare.base.RxjavaResponse;
 import com.easyshare.fragment.main.ExploreFragment;
+import com.easyshare.fragment.main.ExploreParentFragment;
 import com.easyshare.fragment.main.HomepageFragment;
+import com.easyshare.fragment.main.InformationFragment;
 import com.easyshare.fragment.main.MeFragment;
 import com.easyshare.network.Constants;
 import com.easyshare.network.RetrofitFactory;
@@ -44,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         // initialize Fragment
         mFragments = new Fragment[]{
                 HomepageFragment.newInstance(),
-                ExploreFragment.newInstance(),
+                ExploreParentFragment.newInstance(),
+                InformationFragment.newInstance(),
                 MeFragment.newInstance()
         };
         // initialize pager
@@ -73,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
                         mBottomNavigationView.setSelectedItemId(R.id.nav_explore);
                         break;
                     case 2:
+                        mBottomNavigationView.setSelectedItemId(R.id.nav_information);
+                        break;
+                    case 3:
                         mBottomNavigationView.setSelectedItemId(R.id.nav_me);
                         break;
                 }
@@ -87,14 +93,15 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_explore:
                     mViewPager.setCurrentItem(1);
                     return true;
-                case R.id.nav_me:
+                case R.id.nav_information:
                     mViewPager.setCurrentItem(2);
+                    return true;
+                case R.id.nav_me:
+                    mViewPager.setCurrentItem(3);
                     return true;
                 default:
                     return false;
             }
         });
-        // TODO 临时直接进入第二页
-        mViewPager.setCurrentItem(2);
     }
 }

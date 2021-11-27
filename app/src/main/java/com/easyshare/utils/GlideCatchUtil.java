@@ -100,7 +100,10 @@ public class GlideCatchUtil {
             return size + "B";
         }
         double megaByte = kiloByte / 1024;
-        if (megaByte < 1) {
+        if (megaByte < 1 && kiloByte > 512) {   // 超过512k，则以小数点显示M
+            BigDecimal result1 = new BigDecimal(Double.toString(kiloByte / 1024));
+            return result1.setScale(1, BigDecimal.ROUND_HALF_UP).toPlainString() + "M";
+        } else if (megaByte < 1) {
             BigDecimal result1 = new BigDecimal(Double.toString(kiloByte));
             return result1.setScale(1, BigDecimal.ROUND_HALF_UP).toPlainString() + "K";
         }

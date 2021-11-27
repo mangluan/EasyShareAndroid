@@ -148,6 +148,7 @@ public class FriendsFragment extends BaseFragment implements FriendsAdapter.OnCl
         if (entity.isFriend() || // 是互关好友，直接进入取关 ;  如果是关注页面且关注过了
                 (type == FriendsActivity.FriendsType.ATTENTION && entity.getIsFriend() >= 0)) {
             new XPopup.Builder(getContext())
+                    .isDestroyOnDismiss(true)
                     .asConfirm(null, getString(R.string.cancel_attention_hint, entity.getName()), getString(R.string.cancel), getString(R.string.confirm),
                             () -> cancelAttention(button, entity, type, position), null, false, 0)
                     .show();

@@ -4,6 +4,7 @@ public class Constants {
 
     public static final int LOGIN_SUCCESSFULLY = 0x0001;
     public static final int LOGOUT = 0x0002;
+    public static final int UPDATE_USER_INFORMATION = 0x0003;
 
     // 是否初始化软件
     public static final String IS_INITIALIZATION_APPLICATION = "is initiation application";

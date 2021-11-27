@@ -177,6 +177,7 @@ public class ImproveUserDataFragment extends BaseFragment implements OnPermissio
     public void onGranted(List<String> permissions, boolean all) {
         if (all)  // 打开相机相册选择框
             new XPopup.Builder(getContext())
+                    .isDestroyOnDismiss(true)
                     .asCenterList(null, new String[]{getString(R.string.photos), getString(R.string.camera)},
                             (position, text) -> {
                                 if (position == 0) {
@@ -197,6 +198,7 @@ public class ImproveUserDataFragment extends BaseFragment implements OnPermissio
     @Override
     public void onDenied(List<String> permissions, boolean never) {
         new XPopup.Builder(getContext())
+                .isDestroyOnDismiss(true)
                 .asConfirm(null, getString(R.string.permissions_hint), getString(R.string.talk_to_you_later), getString(R.string.to_agree),
                         () -> {
                             if (never) {   // 永久拒绝 -> 跳转到应用权限系统设置页面
@@ -248,9 +250,10 @@ public class ImproveUserDataFragment extends BaseFragment implements OnPermissio
      * 上传文件
      */
     private void uploadFiles(Uri uri) {
-        LoadingPopupView loadingPopupView = new XPopup.Builder(getContext()).asLoading(null, R.layout.view_loading);
+        LoadingPopupView loadingPopupView = new XPopup.Builder(getContext())
+                .isDestroyOnDismiss(true).asLoading(null, R.layout.view_loading);
         OSSUtils.addProgressCallBack(progress -> loadingPopupView.setTitle(getString(R.string.loading_hint, progress)).show());
-        OSSUtils.uploadImage(uri, "avatar/" + UserUtils.getsInstance().getUserInfo().getUserId() + "/img_" + new Date().getTime() + ".png",
+        OSSUtils.uploadImage(uri, getString(R.string.avatar_format,UserUtils.getsInstance().getUserInfo().getUserId() , new Date().getTime() ),
                 new ValueCallBack<String>() {
 
                     @Override
@@ -273,6 +276,8 @@ public class ImproveUserDataFragment extends BaseFragment implements OnPermissio
     @OnClick(R.id.sex_btn)
     public void onSexClick() {
         new XPopup.Builder(getContext())
+                .isDestroyOnDismiss(true)
+                .isDestroyOnDismiss(true)
                 .asCenterList(getString(R.string.set_sex), new String[]{getString(R.string.sex_man), getString(R.string.sex_woman)},
                         (position, text) -> mViewModel.setSexData(text))
                 .show();
@@ -287,10 +292,12 @@ public class ImproveUserDataFragment extends BaseFragment implements OnPermissio
         DatePicker picker = new DatePicker(getActivity());
         picker.setTitle(getString(R.string.set_birthday));
         picker.getTitleView().setTextSize(16f);
+        picker.getTitleView().setTextColor(getContext().getColor(R.color.black_translucence_eighty));
         picker.setBodyWidth(240);
         DateWheelLayout wheelLayout = picker.getWheelLayout();
         wheelLayout.setDateMode(DateMode.YEAR_MONTH_DAY);
-        wheelLayout.setRange(DateEntity.target(1970, 1, 1), DateEntity.today(), DateEntity.target(2000, 1, 1));
+        wheelLayout.setRange(DateEntity.target(1970, 1, 1), DateEntity.today(),
+                DateEntity.target(2000, 1, 1));
         wheelLayout.setCyclicEnabled(true);  // 开启循环滚动
         wheelLayout.setTextColor(getResources().getColor(R.color.black_translucence_thirty));
         wheelLayout.setSelectedTextColor(getResources().getColor(R.color.black_translucence_eighty));

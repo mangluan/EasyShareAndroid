@@ -11,11 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.easyshare.R;
+import com.easyshare.adapter.ExploreRecommendAdapter;
+import com.easyshare.base.BaseException;
 import com.easyshare.base.BaseFragment;
+import com.easyshare.base.RxjavaThrowable;
+import com.easyshare.network.RetrofitFactory;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
@@ -30,16 +37,21 @@ import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 @SuppressLint("NonConstantResourceId")
 public class ExploreFragment extends BaseFragment {
 
     private ExploreViewModel mViewModel;
 
-    @BindView(R.id.magic_indicator)
-    MagicIndicator mIndicator;
-    @BindView(R.id.view_pager)
-    ViewPager2 mViewPager;
+    @BindView(R.id.RecyclerView)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.SmartRefreshLayout)
+    SmartRefreshLayout mSmartRefreshLayout;
+
+    ExploreRecommendAdapter adapter;
 
     public static ExploreFragment newInstance() {
         return new ExploreFragment();
@@ -55,79 +67,58 @@ public class ExploreFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(ExploreViewModel.class);
-        // 初始化ViewPag
-        mViewPager = getView().findViewById(R.id.view_pager);
-        Fragment[] fragments = new Fragment[]{
-                ExploreRecommendGroupFragment.newInstance(),   // 推荐
-                ExploreFollowFragment.newInstance()   // 关注
-        };
-        mViewPager.setAdapter(new FragmentStateAdapter(this) {
-            @Override
-            public int getItemCount() {
-                return fragments.length;
-            }
-
-            @NonNull
-            @Override
-            public Fragment createFragment(int position) {
-                return fragments[position];
-            }
+        // init RecyclerView
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new ExploreRecommendAdapter(mViewModel.getAlbumListData());
+        mRecyclerView.setAdapter(adapter);
+        // init observe
+        mViewModel.observeAlbumListData(getViewLifecycleOwner(), list -> {
+            int limit = list.size() / mViewModel.getPageIndex();
+            adapter.notifyItemRangeChanged(list.size() - limit, limit);
         });
-        // view page 指示器
-        mIndicator = getView().findViewById(R.id.magic_indicator);
-        List<String> mTitleDataList = new ArrayList<>();
-        Collections.addAll(mTitleDataList, "推荐", "关注");
-        CommonNavigatorAdapter commonNavigatorAdapter = new CommonNavigatorAdapter() {
+        // 页码有变动，调用加载代码
+        mViewModel.observePageIndexData(getViewLifecycleOwner(), this::initData);
+        // 刷新页码归零
+        mSmartRefreshLayout.setOnRefreshListener(refreshLayout -> mViewModel.makeZeroPage());
+        // 加载页码自增
+        mSmartRefreshLayout.setOnLoadMoreListener(refreshLayout -> mViewModel.addSelfPage());
+    }
 
-            @Override
-            public int getCount() {
-                return mTitleDataList.size();
-            }
-
-            @Override
-            public IPagerTitleView getTitleView(Context context, final int index) {
-                ColorTransitionPagerTitleView titleView = new ColorTransitionPagerTitleView(context);
-                titleView.setNormalColor(getContext().getColor(R.color.black_translucence_thirty));
-                titleView.setSelectedColor(getContext().getColor(R.color.black_translucence_eighty));
-                titleView.setText(mTitleDataList.get(index));
-                titleView.setTextSize(16f);
-                titleView.setOnClickListener(view -> mViewPager.setCurrentItem(index));
-                return titleView;
-            }
-
-            @Override
-            public IPagerIndicator getIndicator(Context context) {
-                LinePagerIndicator indicator = new LinePagerIndicator(context);
-                indicator.setMode(LinePagerIndicator.MODE_WRAP_CONTENT);
-                indicator.setColors(getContext().getColor(R.color.colorPrimary));
-                indicator.setRoundRadius(180);
-                return indicator;
-            }
-        };
-        CommonNavigator commonNavigator = new CommonNavigator(getContext());
-        commonNavigator.setAdjustMode(true);
-        commonNavigator.setAdapter(commonNavigatorAdapter);
-        mIndicator.setNavigator(commonNavigator);
-        // viewpager indicator 绑定
-        mViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-                mIndicator.onPageScrolled(position, positionOffset, positionOffsetPixels);
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                mIndicator.onPageSelected(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                super.onPageScrollStateChanged(state);
-                mIndicator.onPageScrollStateChanged(state);
-            }
-        });
+    /**
+     * 网络获取数据
+     */
+    private void initData(int pageIndex) {
+        Disposable subscribe = RetrofitFactory.getsInstance(getContext())
+                .getAllAlbum(null, String.valueOf(pageIndex), null)
+                .subscribeOn(Schedulers.io()) // 子线程执行方法
+                .observeOn(AndroidSchedulers.mainThread()) // 主线程回调
+                .subscribe(resp -> {   // 成功回调
+                    if (resp.getCode() == 0) {
+                        if (pageIndex == 1) {
+                            adapter.notifyDataSetChanged();
+                            mSmartRefreshLayout.finishRefresh();
+                            mViewModel.setAlbumListData(resp.getData());
+                            if (resp.getData().size() == 0) { // 显示没有数据提示
+                                mSmartRefreshLayout.finishLoadMoreWithNoMoreData();
+                            }
+                        } else if (resp.getData().size() != 0) {
+                            mSmartRefreshLayout.finishLoadMore();
+                            mViewModel.addAlbumListData(resp.getData());
+                        } else {
+                            mSmartRefreshLayout.finishLoadMoreWithNoMoreData();
+                        }
+                    } else {
+                        throw new BaseException(resp.getMsg());
+                    }
+                }, (RxjavaThrowable) throwable -> {   // 出错回调
+                    // 页面显示
+                    if (pageIndex == 1) {
+                        mSmartRefreshLayout.finishRefresh(false);
+                    } else {
+                        mSmartRefreshLayout.finishLoadMore(false);
+                    }
+                });
+        mDisposables.add(subscribe);
     }
 
 }

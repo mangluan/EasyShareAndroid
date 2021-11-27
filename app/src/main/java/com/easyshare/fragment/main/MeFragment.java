@@ -45,6 +45,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+
+/**
+ * 我的
+ */
 @SuppressLint("NonConstantResourceId")
 public class MeFragment extends BaseFragment {
 
@@ -90,6 +94,7 @@ public class MeFragment extends BaseFragment {
 
     /**
      * 缓存大小刷新
+     * 刷新粉丝数
      */
     @Override
     public void onResume() {
@@ -114,6 +119,10 @@ public class MeFragment extends BaseFragment {
                             mBrowsingCountTextView.setText(String.valueOf(userInfoEntity.getBrowsingCount()));
                             mAttentionCountTextView.setText(String.valueOf(userInfoEntity.getAttentionCount()));
                             mFansCountTextView.setText(String.valueOf(userInfoEntity.getFansCount()));
+                            // 再放回去
+                            UserUtils.getsInstance().getUserInfo().setBrowsingCount(userInfoEntity.getBrowsingCount());
+                            UserUtils.getsInstance().getUserInfo().setAttentionCount(userInfoEntity.getAttentionCount());
+                            UserUtils.getsInstance().getUserInfo().setFansCount(userInfoEntity.getFansCount());
                         } else {
                             throw new BaseException(resp.getMsg());
                         }
@@ -121,7 +130,7 @@ public class MeFragment extends BaseFragment {
                         initAttentionAndFans();
                     });
             mDisposables.add(subscribe);
-        } else {  // 没有登录，查询本地数据库的历史浏览记录
+        } else {  // 没有登录， TODO 查询本地数据库的历史浏览记录
             mBrowsingCountTextView.setText(R.string.text_zero);
             mAttentionCountTextView.setText(R.string.text_null);
             mFansCountTextView.setText(R.string.text_null);
@@ -149,11 +158,12 @@ public class MeFragment extends BaseFragment {
     }
 
     /**
-     * 用户登录
+     * 用户登录、信息修改
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLogin(BaseDataBean<UserInfoEntity> dataBean) {
-        if (dataBean.getCode() == Constants.LOGIN_SUCCESSFULLY) {
+        if (dataBean.getCode() == Constants.LOGIN_SUCCESSFULLY  // 登录成功
+                || dataBean.getCode() == Constants.UPDATE_USER_INFORMATION) { // 信息修改
             UserInfoEntity user = dataBean.getData();
             if (user != null) { // 填充用户信息
                 mLogoutButton.setVisibility(View.VISIBLE);
@@ -161,6 +171,7 @@ public class MeFragment extends BaseFragment {
                         .transition(withCrossFade()).into(mAvatarImageView);
                 mUserNameTextView.setText(user.getName());
                 mTitleSubheadingTextView.setText(getString(R.string.sign_format, TextUtils.isEmpty(user.getSign()) ? getString(R.string.sign_null) : user.getSign()));
+                initAttentionAndFans();
             }
         }
     }
@@ -176,6 +187,7 @@ public class MeFragment extends BaseFragment {
                     .transition(withCrossFade()).into(mAvatarImageView);
             mUserNameTextView.setText(R.string.not_login_name);
             mTitleSubheadingTextView.setText(R.string.not_login_subheading);
+            initAttentionAndFans();
         }
     }
 
@@ -185,6 +197,7 @@ public class MeFragment extends BaseFragment {
     @OnClick(R.id.logout_btn)
     public void onLogoutClick() {
         new XPopup.Builder(getContext())
+                .isDestroyOnDismiss(true)
                 .asConfirm(null, getString(R.string.logout_hint), getString(R.string.cancel), getString(R.string.confirm),
                         () -> {
                             UserUtils.getsInstance().logout();
@@ -286,15 +299,19 @@ public class MeFragment extends BaseFragment {
     @OnClick(R.id.clear_cache_layout)
     public void onClearCacheClick() {
         new XPopup.Builder(getContext())
+                .isDestroyOnDismiss(true)
                 .asConfirm(null, getString(R.string.clear_cache_hint), getString(R.string.cancel), getString(R.string.confirm),
                         () -> {
                             GlideCatchUtil.getInstance().clearCacheMemory(getContext());
                             GlideCatchUtil.getInstance().clearCacheDiskSelf(getContext());
-                            new XPopup.Builder(getContext()).asLoading(null, R.layout.view_loading)
-                                    .setTitle(getString(R.string.clearing_cache)).show().delayDismissWith(1200, () -> {
-                                initCacheSize();
-                                ToastUtils.show(R.string.successfully_clear_cache);
-                            });
+                            new XPopup.Builder(getContext())
+                                    .isDestroyOnDismiss(true)
+                                    .asLoading(null, R.layout.view_loading)
+                                    .setTitle(getString(R.string.clearing_cache)).show()
+                                    .delayDismissWith(1200, () -> {
+                                        initCacheSize();
+                                        ToastUtils.show(R.string.successfully_clear_cache);
+                                    });
                         }, null, false, 0)
                 .show();
     }

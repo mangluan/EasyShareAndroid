@@ -46,10 +46,13 @@ public class LoginRecordAdapter extends RecyclerView.Adapter<LoginRecordAdapter.
             holder.mBroccoli.clearAllPlaceholders();
             // 数据填充
             holder.mTitleTextView.setText(mList.get(position).getSource());
-            String loginTime = mList.get(position).getLoginTime();
-            // 时间处理一下  过滤掉当年
-            loginTime = loginTime.replace(Calendar.getInstance().get(Calendar.YEAR) + "年", "");
-            holder.mSubheadingTextView.setText(loginTime);
+            if (getItemViewType(position) == 2) {
+                holder.mSubheadingTextView.setText("本机");
+            } else { // 时间处理一下  过滤掉当年
+                String loginTime = mList.get(position).getLoginTime();
+                loginTime = loginTime.replace(Calendar.getInstance().get(Calendar.YEAR) + "年", "");
+                holder.mSubheadingTextView.setText(loginTime);
+            }
         }
     }
 
@@ -62,13 +65,14 @@ public class LoginRecordAdapter extends RecyclerView.Adapter<LoginRecordAdapter.
      * @return -
      * 0   ： 预加载 ： 无数据，占位
      * 1   ： 正常项
-     * 2   ： 最后一项
+     * 2   ： 第一项
      */
     @Override
     public int getItemViewType(int position) {
         if (mList.size() == 0 && getItemCount() == NUMBER_OF_DEFAULT_PLACEHOLDERS) {
             return 0;
-        } else return 1;
+        } else if (position == 0) return 2;
+        else return 1;
     }
 
     @SuppressLint("NonConstantResourceId")
