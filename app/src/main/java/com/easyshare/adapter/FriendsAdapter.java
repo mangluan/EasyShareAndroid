@@ -126,7 +126,6 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
 
     }
 
-
     /**
      * 点击接口  供外部调用
      */

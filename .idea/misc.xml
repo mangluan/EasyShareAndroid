@@ -3,11 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/50834/.gradle/caches/transforms-2/files-2.1/54ab5898038f6ad0f5524ad30bacadf0/jetified-pictureselector-v3.0.5/res/drawable/ps_audio_placeholder.xml" value="0.36944444444444446" />
+        <entry key="..\:/Users/50834/.gradle/caches/transforms-2/files-2.1/54ab5898038f6ad0f5524ad30bacadf0/jetified-pictureselector-v3.0.5/res/drawable/ps_checkbox_selector.xml" value="0.3643835616438356" />
         <entry key="..\:/Users/50834/.gradle/caches/transforms-2/files-2.1/6939462900247f1a69c723923f85daca/jetified-XPopup-2.6.2/res/layout/_xpopup_center_impl_confirm.xml" value="0.32546296296296295" />
+        <entry key="..\:/Users/50834/.gradle/caches/transforms-2/files-2.1/d4393ec2404e6222ade89f8993f2b096/jetified-pictureselector-v3.0.5/res/drawable/ps_image_placeholder.xml" value="0.36944444444444446" />
         <entry key="..\:/Users/50834/.gradle/caches/transforms-2/files-2.1/df48b402bdd98be69eae4467eeb7c040/jetified-crashreport_upgrade-1.5.23/res/layout/activity_beta_active_alert.xml" value="0.32546296296296295" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/bg_on_boarding_one.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/bg_onboarding_one.xml" value="0.22760416666666666" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic____1_.xml" value="0.3643835616438356" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_____1_.xml" value="0.3398148148148148" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_______1_.xml" value="0.3398148148148148" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_album_24.xml" value="0.3398148148148148" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_black_arrow_down.xml" value="0.3643835616438356" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_close_edit_18.xml" value="0.3398148148148148" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_comment_18.xml" value="0.3398148148148148" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_edit_24.xml" value="0.3398148148148148" />
@@ -20,6 +27,15 @@
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_like_selected_18.xml" value="0.3398148148148148" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_me_24.xml" value="0.3398148148148148" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_menu_16.xml" value="0.3398148148148148" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_messages_at_30.xml" value="0.3398148148148148" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_messages_at_36.xml" value="0.3398148148148148" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_messages_comment_30.xml" value="0.3398148148148148" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_messages_comment_36.xml" value="0.3398148148148148" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_messages_empty_200.xml" value="0.3398148148148148" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_messages_like_28.xml" value="0.3398148148148148" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_messages_like_30.xml" value="0.3398148148148148" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_messages_system_30.xml" value="0.3398148148148148" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_messages_system_40.xml" value="0.3398148148148148" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_next_12.xml" value="0.3398148148148148" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_next_24.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_password_hidden.xml" value="0.3398148148148148" />
@@ -27,24 +43,32 @@
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_photo_24.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_qq.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_qq_30.xml" value="0.22708333333333333" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_reminder_btn.xml" value="0.3643835616438356" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_search_24.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_share_18.xml" value="0.3398148148148148" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_wechat_30.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/ic_weibo_30.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/launch_screen.xml" value="0.3398148148148148" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/shape_opacity_gradient.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/shape_round_red.xml" value="0.3398148148148148" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/shape_round_red_16.xml" value="0.36944444444444446" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/shape_round_red_20.xml" value="0.3398148148148148" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/shape_select_bottom.xml" value="0.36944444444444446" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/drawable/shape_white.xml" value="0.38229166666666664" />
-        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/activity_main.xml" value="0.21105072463768115" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_about_software.xml" value="0.22546296296296298" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_account_security.xml" value="0.21944444444444444" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_classification.xml" value="0.3421296296296296" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_explore.xml" value="0.21105072463768115" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_explore_parent.xml" value="0.32546296296296295" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_explore_recommend.xml" value="0.22509057971014493" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_explore_recommend_group.xml" value="0.3283514492753623" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_friends.xml" value="0.22546296296296298" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_homepage.xml" value="0.35509259259259257" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_improve_user_data.xml" value="0.22509057971014493" />
-        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_information.xml" value="0.32546296296296295" />
-        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_login.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_information.xml" value="0.42918192918192916" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_like_record.xml" value="0.35509259259259257" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_login.xml" value="0.4" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_login_record.xml" value="0.32546296296296295" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_me.xml" value="0.22546296296296298" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_on_boarding_one.xml" value="0.2966485507246377" />
@@ -54,17 +78,34 @@
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_onboarding_three.xml" value="0.2966485507246377" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_onboarding_two.xml" value="0.2966485507246377" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_personal_information.xml" value="0.4" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_publish_image_text.xml" value="0.35509259259259257" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_publish_photo_album.xml" value="0.35509259259259257" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_scene_one.xml" value="0.2109375" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_web.xml" value="0.3283514492753623" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_welcome.xml" value="0.34057971014492755" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/fragment_welcome_parent.xml" value="0.34057971014492755" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/item_explore_complicated.xml" value="0.4" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/item_friends.xml" value="0.4" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/item_information.xml" value="0.32546296296296295" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/item_line.xml" value="0.32546296296296295" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/item_user.xml" value="0.35509259259259257" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/layout_author_loading.xml" value="0.32546296296296295" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/layout_recycler_view.xml" value="0.32546296296296295" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/view_filter_image.xml" value="0.35509259259259257" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/view_loading.xml" value="0.22509057971014493" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/layout/view_select_main_add.xml" value="0.35509259259259257" />
         <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/menu/menu_main_nav_bottom.xml" value="0.32546296296296295" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/menu/menu_publish_nav_bottom.xml" value="0.35509259259259257" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3398148148148148" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/ucrop/src/main/res/drawable/ucrop_crop.xml" value="0.3643835616438356" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/ucrop/src/main/res/drawable/ucrop_gallery_bg.xml" value="0.3643835616438356" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/ucrop/src/main/res/drawable/ucrop_gallery_current.xml" value="0.3643835616438356" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/ucrop/src/main/res/drawable/ucrop_ic_next.xml" value="0.3643835616438356" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/ucrop/src/main/res/drawable/ucrop_shadow_upside.xml" value="0.3643835616438356" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/ucrop/src/main/res/drawable/ucrop_vector_ic_crop.xml" value="0.3643835616438356" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/ucrop/src/main/res/drawable/ucrop_vector_loader.xml" value="0.3643835616438356" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/ucrop/src/main/res/drawable/ucrop_vector_loader_animated.xml" value="0.3643835616438356" />
+        <entry key="..\:/Users/50834/Desktop/GraduationDesign/EasyShareAndroid/ucrop/src/main/res/drawable/ucrop_wrapper_controls_shape.xml" value="0.3643835616438356" />
       </map>
     </option>
   </component>

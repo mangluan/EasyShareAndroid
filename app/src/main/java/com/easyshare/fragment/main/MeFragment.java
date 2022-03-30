@@ -21,6 +21,7 @@ import com.easyshare.R;
 import com.easyshare.activity.AboutSoftwareActivity;
 import com.easyshare.activity.AccountSecurityActivity;
 import com.easyshare.activity.FriendsActivity;
+import com.easyshare.activity.LikeRecordActivity;
 import com.easyshare.activity.LoginActivity;
 import com.easyshare.base.BaseDataBean;
 import com.easyshare.base.BaseException;
@@ -246,7 +247,11 @@ public class MeFragment extends BaseFragment {
      */
     @OnClick(R.id.like_button)
     public void onLikeClick() {
-        ToastUtils.show("点赞");
+        if (UserUtils.getsInstance().isLogin()) {
+            LikeRecordActivity.startActivity(getContext());
+        } else {
+            ToastUtils.show(R.string.error_login);
+        }
     }
 
     /**

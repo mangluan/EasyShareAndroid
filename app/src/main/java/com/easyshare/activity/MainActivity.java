@@ -1,7 +1,7 @@
 package com.easyshare.activity;
 
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.view.Gravity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,22 +10,18 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.easyshare.R;
-import com.easyshare.base.RxjavaResponse;
-import com.easyshare.fragment.main.ExploreFragment;
 import com.easyshare.fragment.main.ExploreParentFragment;
 import com.easyshare.fragment.main.HomepageFragment;
 import com.easyshare.fragment.main.InformationFragment;
 import com.easyshare.fragment.main.MeFragment;
-import com.easyshare.network.Constants;
-import com.easyshare.network.RetrofitFactory;
-import com.easyshare.utils.SharedPreferenceUtils;
 import com.easyshare.utils.UserUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hjq.toast.ToastUtils;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import razerdp.basepopup.QuickPopupBuilder;
+import razerdp.basepopup.QuickPopupConfig;
+import razerdp.util.animation.AnimationHelper;
+import razerdp.util.animation.TranslationConfig;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -103,5 +99,47 @@ public class MainActivity extends AppCompatActivity {
                     return false;
             }
         });
+        // 点击添加按钮
+        findViewById(R.id.btn_main_add).setOnClickListener(v -> {
+            // TODO : TEST ACTIVITY
+            PublishImageTextActivity.startActivity(this);
+            if(true) return;
+            if (UserUtils.getsInstance().isLogin()) {
+                if (UserUtils.getsInstance().getUserInfo().getLevel() == 0) {
+                    // 直接打开发布图文页面
+                    PublishImageTextActivity.startActivity(this);
+                } else if (UserUtils.getsInstance().getUserInfo().getLevel() > 0) {
+                    // 打开图文、图册发布选择
+                    openSelectPopup();
+                } else {
+                    ToastUtils.show(R.string.error_user_banned);
+                }
+            } else { // 如果是没有登录的状态，点击则跳转到登录页面
+                ToastUtils.show(R.string.error_login);
+                LoginActivity.startActivity(this);
+            }
+        });
     }
+
+    /**
+     * 打开图文、图册发布选择
+     */
+    private void openSelectPopup() {
+        QuickPopupBuilder.with(this)
+                .contentView(R.layout.view_select_main_add)
+                .config(new QuickPopupConfig()
+                        .gravity(Gravity.BOTTOM)
+                        .withShowAnimation(AnimationHelper.asAnimation().withTranslation(TranslationConfig.FROM_BOTTOM).toShow())
+                        .withDismissAnimation(AnimationHelper.asAnimation().withTranslation(TranslationConfig.TO_BOTTOM).toDismiss())
+                        .withClick(R.id.btn_publish_image_text, view -> { // 打开发布图文页面
+                            PublishImageTextActivity.startActivity(this);
+                        }, true)
+                        .withClick(R.id.btn_publish_photo_album, view -> { // 打开发布图册页面
+                            PublishPhotoAlbumActivity.startActivity(this);
+                        }, true)
+                        .withClick(R.id.btn_cancel, null, true)
+                ).show();
+    }
+
+
 }

@@ -11,7 +11,8 @@ public class Constants {
     public static final String TOKEN = "easy share token";
     public static final String USER_MAIL = "last login mail";
 
-    public static final String BASE_URL = "http://api.easyshare.shop/";     // api接口协议地址
+//    public static final String BASE_URL = "http://api.easyshare.shop/";     // api接口协议地址
+    public static final String BASE_URL = "http://10.40.27.110:999/";     // 本地测试： api接口协议地址
 
     /* ----------------  oss  -----------------------*/
     public static final String URL_OSS_GET_TOKEN = "/OSS/getToken"; // oss 获取token
@@ -31,6 +32,11 @@ public class Constants {
     public static final String URL_USER_MORE_INFO = "/user/getMoreUserInfo"; // 获取浏览、关注、粉丝数量
 
     /* ----------------  album -----------------------*/
-    public static final String URL_ALBUM_GET_ALL_LIST = "/album/getAllAlbum"; // 获取全部图册
+    public static final String URL_ALBUM_GET_ALL_LIST = "/album/getAllAlbumList"; // 获取全部图册列表
+    public static final String URL_ALBUM_GET_LIKE_LIST = "/album/getLikeAlbumList"; // 获取点赞图册列表
+    public static final String URL_ALBUM_PUBLISH_IMAGE_TEXT = "/album/publishImageText"; // 发布图文
+
+    public static final String URL_CLASSIFICATION_GET_ALL_LIST = "/classification/getAllClassification"; // 获取分类列表
+
 
 }

@@ -1,13 +1,17 @@
 package com.easyshare.network;
 
 
+import android.util.Pair;
+
 import com.easyshare.base.BaseDataBean;
+import com.easyshare.entity.ClassificationEntity;
 import com.easyshare.entity.LoginRecordEntity;
 import com.easyshare.entity.OSSTokenEntity;
 import com.easyshare.entity.PhotoAlbumEntity;
 import com.easyshare.entity.UserInfoEntity;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.annotations.Nullable;
@@ -61,8 +65,23 @@ public interface RetrofitService {
      * 参数选填：分类ID、页码、页长
      */
     @POST(Constants.URL_ALBUM_GET_ALL_LIST)
-    Observable<BaseDataBean<List<PhotoAlbumEntity>>> getAllAlbum(@Nullable @Query("classificationId") String classificationId,
-                                                                 @Nullable @Query("page") String page, @Nullable @Query("limit") String limit);
+    Observable<BaseDataBean<List<PhotoAlbumEntity>>> getAllAlbumList(@Nullable @Query("classificationId") String classificationId,
+                                                                     @Nullable @Query("page") String page, @Nullable @Query("limit") String limit);
+
+    /**
+     * 查询点赞的图文、图册
+     */
+    @POST(Constants.URL_ALBUM_GET_LIKE_LIST)
+    Observable<BaseDataBean<List<PhotoAlbumEntity>>> getLikeAlbumList(@Nullable @Query("page") String page, @Nullable @Query("limit") String limit);
+
+    /**
+     * 发布图册
+     */
+    @POST(Constants.URL_ALBUM_PUBLISH_IMAGE_TEXT)
+    Observable<BaseDataBean<String>> publishImageText(@Nullable @Query("title") String title,
+                                                      @Nullable @Query("classificationId") int classificationId,
+                                                      @Nullable @Query("urls")  String urls, // key 图片地址  value  图片比
+                                                      @Nullable @Query("displayStyle") String displayStyle);
 
     /**
      * 获取用户关注列表
@@ -99,4 +118,11 @@ public interface RetrofitService {
      */
     @POST(Constants.URL_USER_GET_LOGIN_RECORD_LIST)
     Observable<BaseDataBean<List<LoginRecordEntity>>> getLoginRecord();
+
+    /**
+     * 获取全部分类
+     */
+    @POST(Constants.URL_CLASSIFICATION_GET_ALL_LIST)
+    Observable<BaseDataBean<List<ClassificationEntity>>> getClassificationAdapter();
+
 }

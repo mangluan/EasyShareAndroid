@@ -26,8 +26,6 @@ public class EasyShareApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        // 初始化 Bugly
-        Bugly.init(getApplicationContext(), "424e29f88b", false);
         // 初始化 ToastUtils
         ToastUtils.init(this);
         ToastUtils.initStyle(new ToastBlackStyle(this) {
@@ -47,8 +45,6 @@ public class EasyShareApplication extends Application {
             }
         });
         ToastUtils.setGravity(Gravity.BOTTOM, 0, 300);
-        // oss
-        OSSUtils.initOOS(this);
         // 自动登录
         String token = SharedPreferenceUtils.getString(this, Constants.TOKEN);
         if (!TextUtils.isEmpty(token)) { // 可以尝试登录
@@ -65,6 +61,10 @@ public class EasyShareApplication extends Application {
                         }
                     }, Throwable::printStackTrace);
         }
+        // 初始化 Bugly
+        Bugly.init(getApplicationContext(), "424e29f88b", false);
+        // 初始化 oss
+        OSSUtils.initOOS(this);
     }
 
 }

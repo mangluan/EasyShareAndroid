@@ -9,11 +9,92 @@
     <View
         android:id="@+id/title_background"
         android:layout_width="match_parent"
-        android:elevation="1dp"
         android:layout_height="?actionBarSize"
         android:background="@color/main_navigation"
+        android:elevation="1dp"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_background">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--    推荐用户-->
+            <LinearLayout
+                android:id="@+id/users_to_recommend_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/title_users_to_recommend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/users_to_recommend"
+                    android:textColor="@color/black_translucence_eighty"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@id/rv_users_to_recommend"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_users_to_recommend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:layout_constraintTop_toBottomOf="title_users_to_recommend"
+                    tools:listitem="@layout/item_user" />
+
+            </LinearLayout>
+
+            <!--  TODO  登录提示 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/users_to_recommend_layout" />
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/SmartRefreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/users_to_recommend_layout">
+                <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/users_to_recommend_layout"
+                    tools:listitem="@layout/item_explore_complicated" />
+
+                <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

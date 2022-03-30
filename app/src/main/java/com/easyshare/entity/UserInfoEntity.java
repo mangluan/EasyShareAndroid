@@ -27,6 +27,7 @@ public class UserInfoEntity {
     private String sign;
     private String phone;
     private String registrationDate;
+    private int level;
 
     /**
      * 足迹、关注、粉丝
@@ -151,6 +152,14 @@ public class UserInfoEntity {
         this.registrationDate = registrationDate;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     @Override
     public String toString() {
         return "UserInfoEntity{" +
@@ -162,6 +171,7 @@ public class UserInfoEntity {
                 ", birthday='" + birthday + '\'' +
                 ", sign='" + sign + '\'' +
                 ", phone='" + phone + '\'' +
+                ", level='" + level + '\'' +
                 ", registrationDate='" + registrationDate + '\'' +
                 ", browsingCount=" + browsingCount +
                 ", attentionCount=" + attentionCount +

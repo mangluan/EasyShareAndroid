@@ -1,5 +1,11 @@
 package com.easyshare.fragment.user;
 
+import static com.easyshare.fragment.user.LoginViewModel.ActionState.AUTH_CODE_LOGIN;
+import static com.easyshare.fragment.user.LoginViewModel.ActionState.PASSWORD_LOGIN;
+import static com.easyshare.fragment.user.LoginViewModel.ActionState.WAITING_INPUT_MAIL;
+import static com.easyshare.fragment.user.LoginViewModel.ShowState.HIDDEN;
+import static com.easyshare.fragment.user.LoginViewModel.ShowState.SHOW;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,7 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.constraintlayout.widget.Guideline;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.transition.ChangeBounds;
 import androidx.transition.Transition;
@@ -26,7 +31,6 @@ import com.easyshare.R;
 import com.easyshare.activity.ImproveUserDataActivity;
 import com.easyshare.activity.WebActivity;
 import com.easyshare.base.BaseFragment;
-import com.easyshare.base.RxjavaResponse;
 import com.easyshare.base.RxjavaThrowable;
 import com.easyshare.base.SimpleTextWatcher;
 import com.easyshare.network.Constants;
@@ -41,12 +45,6 @@ import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-
-import static com.easyshare.fragment.user.LoginViewModel.ActionState.AUTH_CODE_LOGIN;
-import static com.easyshare.fragment.user.LoginViewModel.ActionState.PASSWORD_LOGIN;
-import static com.easyshare.fragment.user.LoginViewModel.ActionState.WAITING_INPUT_MAIL;
-import static com.easyshare.fragment.user.LoginViewModel.ShowState.HIDDEN;
-import static com.easyshare.fragment.user.LoginViewModel.ShowState.SHOW;
 
 /**
  * 登录注册页
@@ -78,8 +76,6 @@ public class LoginFragment extends BaseFragment {
     Button mSubmitButton;
     @BindView(R.id.transition_login_btn)
     TextView mTransitionLoginButton;
-    @BindView(R.id.guideline)
-    Guideline mGuideline;
 
     public static LoginFragment newInstance() {
         return new LoginFragment();
@@ -97,6 +93,7 @@ public class LoginFragment extends BaseFragment {
         mViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         // 初始化必要参数
         mConstraintSet = new ConstraintSet();
+        mConstraintSet.clone(mRootConstraintLayout);
         String lastLoginMail = SharedPreferenceUtils.getString(getContext(), Constants.USER_MAIL);
         if (!TextUtils.isEmpty(lastLoginMail)) {
             mMailEditText.setText(lastLoginMail);
@@ -159,7 +156,8 @@ public class LoginFragment extends BaseFragment {
                         mPasswordEditText.setVisibility(View.INVISIBLE);
                         mPasswordSwitchButton.setVisibility(View.INVISIBLE);
                     } else return; // 两个都没有，说明不需要改变
-                    mConstraintSet.connect(mGuideline.getId(), ConstraintSet.TOP, mMailEditText.getId(), ConstraintSet.BOTTOM);
+                    mConstraintSet.connect(mSubmitButton.getId(), ConstraintSet.TOP, mMailEditText.getId(), ConstraintSet.BOTTOM);
+                    mConstraintSet.connect(R.id.transition_login_btn, ConstraintSet.TOP, mMailEditText.getId(), ConstraintSet.BOTTOM);
                     TransitionManager.beginDelayedTransition(mRootConstraintLayout, changeBounds);
                     mConstraintSet.applyTo(mRootConstraintLayout);
                     // 更改页面显示
@@ -172,7 +170,8 @@ public class LoginFragment extends BaseFragment {
                 case AUTH_CODE_LOGIN:
                     // 显示验证码登陆框
                     mAuthCodeEditText.setText(null);
-                    mConstraintSet.connect(mGuideline.getId(), ConstraintSet.TOP, mAuthCodeEditText.getId(), ConstraintSet.BOTTOM);
+                    mConstraintSet.connect(mSubmitButton.getId(), ConstraintSet.TOP, mAuthCodeEditText.getId(), ConstraintSet.BOTTOM);
+                    mConstraintSet.connect(R.id.transition_login_btn, ConstraintSet.TOP, mAuthCodeEditText.getId(), ConstraintSet.BOTTOM);
                     changeBounds.addListener(new TransitionListenerAdapter() {
                         @Override
                         public void onTransitionEnd(@NonNull Transition transition) {
@@ -195,7 +194,8 @@ public class LoginFragment extends BaseFragment {
                         mPasswordSwitchButton.setVisibility(View.VISIBLE);
                         mPasswordEditText.requestFocus();
                     } else { // 添加动画后显示
-                        mConstraintSet.connect(mGuideline.getId(), ConstraintSet.TOP, mPasswordEditText.getId(), ConstraintSet.BOTTOM);
+                        mConstraintSet.connect(mSubmitButton.getId(), ConstraintSet.TOP, mPasswordEditText.getId(), ConstraintSet.BOTTOM);
+                        mConstraintSet.connect(R.id.transition_login_btn, ConstraintSet.TOP, mPasswordEditText.getId(), ConstraintSet.BOTTOM);
                         changeBounds.addListener(new TransitionListenerAdapter() {
                             @Override
                             public void onTransitionEnd(@NonNull Transition transition) {
@@ -326,6 +326,7 @@ public class LoginFragment extends BaseFragment {
                             }
                             mSubmitButton.setEnabled(true);
                         }, (RxjavaThrowable) throwable -> {   // 出错回调
+                            mSubmitButton.setEnabled(true);
                         });
                 break;
             case PASSWORD_LOGIN: // 密码登录

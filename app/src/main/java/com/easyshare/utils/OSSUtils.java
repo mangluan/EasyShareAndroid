@@ -74,7 +74,7 @@ public class OSSUtils {
     }
 
     /**
-     * 上传图片
+     * 上传图片 -- 异步
      *
      * @param uri                图片Uri
      * @param fileName           服务器储存名字，带路径
@@ -112,6 +112,26 @@ public class OSSUtils {
                 }
             }
         });
+    }
+
+
+    /**
+     * 上传图片 -- 同步
+     *
+     * @param uri                图片Uri
+     * @param fileName           服务器储存名字，带路径
+     */
+    public static String uploadImage(Uri uri, String fileName) throws ClientException, ServiceException {
+        // 构造上传请求。
+        PutObjectRequest put = new PutObjectRequest(bucketName, fileName, uri);
+        // 异步上传时可以设置进度回调。
+        put.setProgressCallback((request, currentSize, totalSize) -> {
+            if (mProgressCallBack != null) {
+                mHandler.post(() -> mProgressCallBack.onSuccess((int) (currentSize * 100.0 / totalSize)));
+            }
+        });
+        mOSS.putObject(put);
+        return filePrefix + fileName;
     }
 
 }

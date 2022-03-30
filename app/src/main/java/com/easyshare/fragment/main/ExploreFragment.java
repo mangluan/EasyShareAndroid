@@ -1,7 +1,6 @@
 package com.easyshare.fragment.main;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +8,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.easyshare.R;
 import com.easyshare.adapter.ExploreRecommendAdapter;
@@ -23,18 +19,6 @@ import com.easyshare.base.BaseFragment;
 import com.easyshare.base.RxjavaThrowable;
 import com.easyshare.network.RetrofitFactory;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-
-import net.lucode.hackware.magicindicator.MagicIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -89,7 +73,7 @@ public class ExploreFragment extends BaseFragment {
      */
     private void initData(int pageIndex) {
         Disposable subscribe = RetrofitFactory.getsInstance(getContext())
-                .getAllAlbum(null, String.valueOf(pageIndex), null)
+                .getAllAlbumList(null, String.valueOf(pageIndex), null)
                 .subscribeOn(Schedulers.io()) // 子线程执行方法
                 .observeOn(AndroidSchedulers.mainThread()) // 主线程回调
                 .subscribe(resp -> {   // 成功回调

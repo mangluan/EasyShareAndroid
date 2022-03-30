@@ -152,11 +152,12 @@ public class ExploreRecommendAdapter extends RecyclerView.Adapter<ExploreRecomme
          */
         public void setImages(List<PictureEntity> pictureEntities, View itemView) {
             for (int i = 0; i < pictureEntities.size(); i++) {
-                Glide.with(itemView).load(pictureEntities.get(i).getPicurl())
-                        .transition(withCrossFade()).into(mImageViews[i]);
-                if (pictureEntities.size() == 4 && (i == 3 || i == 4))
+                if (pictureEntities.size() == 4 && i > 1)
                     Glide.with(itemView).load(pictureEntities.get(i).getPicurl())
                             .transition(withCrossFade()).into(mImageViews[i + 1]);
+                else
+                    Glide.with(itemView).load(pictureEntities.get(i).getPicurl())
+                            .transition(withCrossFade()).into(mImageViews[i]);
             }
             setCutOffRuleSite(pictureEntities.size() < 4);
             switch (pictureEntities.size()) {

@@ -1,4 +1,4 @@
-package com.easyshare.fragment.web;
+package com.easyshare.fragment.other;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;

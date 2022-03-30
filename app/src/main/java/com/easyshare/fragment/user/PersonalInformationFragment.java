@@ -67,6 +67,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * 个人信息
+ */
 @SuppressLint("NonConstantResourceId")
 public class PersonalInformationFragment extends BaseFragment implements OnPermissionCallback {
 

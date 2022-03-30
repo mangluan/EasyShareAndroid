@@ -49,6 +49,7 @@
     <string name="photos">图库</string>
     <string name="camera">拍照</string>
     <string name="loading_hint">正在上传：%d%%</string>
+    <string name="loading_hint_2">正在上传：%d/%d</string>
     <string name="successfully_registered">注册成功</string>
     <string name="successfully_send_auth_code">发送成功，请注意查收</string>
     <string name="start_app">开始</string>
@@ -96,10 +97,30 @@
     <string name="update_sex">修改性别</string>
     <string name="update_birthday">修改生日</string>
     <string name="avatar_format">avatar/%d/img_%d.png</string>
+    <string name="image_format">image/%d/img_%d.png</string>
     <string name="update_user_name">更新昵称</string>
     <string name="set_sign">设置简介</string>
     <string name="update_sign">更新简介</string>
     <string name="sign_hint">请输入个人简介~</string>
     <string name="nav_information">消息</string>
+    <string name="system">系统</string>
+    <string name="reply">回复</string>
+    <string name="at_me">\@我</string>
+    <string name="messages_empty">没有任何消息哦~</string>
+    <string name="error_user_banned">帐号已被封禁</string>
+    <string name="text_publish_image_text">发布图文</string>
+    <string name="text_publish_photo_album">发布图册</string>
+    <string name="title">标题</string>
+    <string name="content">内容</string>
+    <string name="classification">分类</string>
+    <string name="display_style">显示样式</string>
+    <string name="error_image_delete">至少保留一张图片哦~</string>
+    <string name="publish_image_text_title">添加说明...</string>
+    <string name="publish_image_text_title_hint">请添加图片说明</string>
+    <string name="display_style_complex">多图模式</string>
+    <string name="display_style_simple">单图模式</string>
+    <string name="please_choose">请选择</string>
+    <string name="please_choose_classification">请选择分类</string>
+    <string name="users_to_recommend">用户推荐：</string>
 
 </resources>

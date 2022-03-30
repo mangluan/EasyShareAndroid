@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.main.InformationFragment">
 
     <View
@@ -15,15 +15,268 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:textSize="@dimen/main_text_size"
-        android:elevation="1dp"
-        android:textColor="@color/black_translucence_eighty"
-        android:text="@string/nav_information"
-        app:layout_constraintTop_toTopOf="@+id/title_background"
-        app:layout_constraintBottom_toBottomOf="@+id/title_background"
-        app:layout_constraintStart_toStartOf="@+id/title_background"
-        app:layout_constraintEnd_toEndOf="@+id/title_background"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:text="@string/nav_information"
+        android:textColor="@color/black_translucence_eighty"
+        android:textSize="@dimen/main_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/title_background"
+        app:layout_constraintEnd_toEndOf="@+id/title_background"
+        app:layout_constraintStart_toStartOf="@+id/title_background"
+        app:layout_constraintTop_toTopOf="@+id/title_background" />
+
+    <!--    系统-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/system_messages_layout"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:elevation=".5dp"
+        app:layout_constraintEnd_toStartOf="@+id/at_me_messages_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_background">
+
+        <ImageView
+            android:id="@+id/img_messages_system"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ic_messages_system_30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/system"
+            android:textColor="@color/black_translucence"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_messages_system" />
+
+        <TextView
+            app:layout_constraintBottom_toTopOf="@+id/img_messages_system"
+            app:layout_constraintTop_toTopOf="@+id/img_messages_system"
+            app:layout_constraintStart_toEndOf="@+id/img_messages_system"
+            app:layout_constraintEnd_toEndOf="@+id/img_messages_system"
+            android:text="1"
+            android:gravity="center"
+            android:background="@drawable/shape_round_red_16"
+            android:textColor="@color/white"
+            android:textSize="9sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="SmallSp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--    @ -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/at_me_messages_layout"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:elevation=".5dp"
+        app:layout_constraintEnd_toStartOf="@+id/like_messages_layout"
+        app:layout_constraintStart_toEndOf="@+id/system_messages_layout"
+        app:layout_constraintTop_toBottomOf="@id/title_background">
+
+        <ImageView
+            android:id="@+id/img_messages_at"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ic_messages_at_30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/at_me"
+            android:textColor="@color/black_translucence"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_messages_at" />
+
+        <TextView
+            app:layout_constraintBottom_toTopOf="@+id/img_messages_at"
+            app:layout_constraintTop_toTopOf="@+id/img_messages_at"
+            app:layout_constraintStart_toEndOf="@+id/img_messages_at"
+            app:layout_constraintEnd_toEndOf="@+id/img_messages_at"
+            android:text="99+"
+            android:gravity="center"
+            android:background="@drawable/shape_round_red_20"
+            android:textColor="@color/white"
+            android:textSize="9sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="SmallSp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--    点赞-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/like_messages_layout"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:elevation=".5dp"
+        app:layout_constraintEnd_toStartOf="@+id/comment_messages_layout"
+        app:layout_constraintStart_toEndOf="@+id/at_me_messages_layout"
+        app:layout_constraintTop_toBottomOf="@id/title_background">
+
+        <ImageView
+            android:id="@+id/img_messages_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ic_messages_like_30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/like"
+            android:textColor="@color/black_translucence"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_messages_like" />
+
+        <TextView
+            app:layout_constraintBottom_toTopOf="@+id/img_messages_like"
+            app:layout_constraintTop_toTopOf="@+id/img_messages_like"
+            app:layout_constraintStart_toEndOf="@+id/img_messages_like"
+            app:layout_constraintEnd_toEndOf="@+id/img_messages_like"
+            android:text="11"
+            android:gravity="center"
+            android:background="@drawable/shape_round_red_16"
+            android:textColor="@color/white"
+            android:textSize="9sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="SmallSp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--    回复-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/comment_messages_layout"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:elevation=".5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/like_messages_layout"
+        app:layout_constraintTop_toBottomOf="@id/title_background">
+
+        <ImageView
+            android:id="@+id/img_messages_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ic_messages_comment_30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/comment"
+            android:textColor="@color/black_translucence"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_messages_comment" />
+
+        <TextView
+            app:layout_constraintBottom_toTopOf="@+id/img_messages_comment"
+            app:layout_constraintTop_toTopOf="@+id/img_messages_comment"
+            app:layout_constraintStart_toEndOf="@+id/img_messages_comment"
+            app:layout_constraintEnd_toEndOf="@+id/img_messages_comment"
+            android:text="11"
+            android:gravity="center"
+            android:background="@drawable/shape_round_red_16"
+            android:textColor="@color/white"
+            android:textSize="9sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="SmallSp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/SmartRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/system_messages_layout"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="-29dp">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never" />
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/SmartRefreshLayout"
+        app:layout_constraintEnd_toEndOf="@+id/SmartRefreshLayout"
+        app:layout_constraintStart_toStartOf="@+id/SmartRefreshLayout"
+        app:layout_constraintTop_toTopOf="@+id/SmartRefreshLayout">
+
+        <ImageView
+            android:id="@+id/img_messages_empty"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_messages_empty_200"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/text_messages_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/messages_empty"
+            android:textColor="@color/black_translucence"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_messages_empty" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
