@@ -1,27 +1,22 @@
 package com.easyshare.fragment.album;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.easyshare.R;
-import com.easyshare.adapter.ExploreRecommendAdapter;
+import com.easyshare.adapter.ExploreAdapter;
 import com.easyshare.base.BaseException;
 import com.easyshare.base.BaseFragment;
 import com.easyshare.base.RxjavaThrowable;
-import com.easyshare.fragment.main.ExploreFragment;
-import com.easyshare.fragment.main.ExploreViewModel;
 import com.easyshare.network.RetrofitFactory;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -30,7 +25,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-    @SuppressLint("NonConstantResourceId")
+@SuppressLint("NonConstantResourceId")
 public class LikeRecordFragment extends BaseFragment {
 
     private LikeRecordViewModel mViewModel;
@@ -40,7 +35,7 @@ public class LikeRecordFragment extends BaseFragment {
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
 
-    ExploreRecommendAdapter adapter;
+    ExploreAdapter adapter;
 
     public static LikeRecordFragment newInstance() {
         return new LikeRecordFragment();
@@ -58,7 +53,7 @@ public class LikeRecordFragment extends BaseFragment {
         mViewModel = new ViewModelProvider(this).get(LikeRecordViewModel.class);
         // init RecyclerView
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new ExploreRecommendAdapter(mViewModel.getAlbumListData());
+        adapter = new ExploreAdapter(mViewModel.getAlbumListData());
         mRecyclerView.setAdapter(adapter);
         // init observe
         mViewModel.observeAlbumListData(getViewLifecycleOwner(), list -> {
@@ -86,10 +81,13 @@ public class LikeRecordFragment extends BaseFragment {
                         if (pageIndex == 1) {
                             adapter.notifyDataSetChanged();
                             mSmartRefreshLayout.finishRefresh();
-                            mViewModel.setAlbumListData(resp.getData());
-                            if (resp.getData().size() == 0) { // 显示没有数据提示
+                            if (resp.getData().size() == 0) {
                                 mSmartRefreshLayout.finishLoadMoreWithNoMoreData();
+                                adapter.setDataEmpty();
                             }
+                            getView().findViewById(R.id.text_no_data).setVisibility(
+                                    resp.getData().size() == 0 ? View.VISIBLE : View.INVISIBLE);
+                            mViewModel.setAlbumListData(resp.getData());
                         } else if (resp.getData().size() != 0) {
                             mSmartRefreshLayout.finishLoadMore();
                             mViewModel.addAlbumListData(resp.getData());

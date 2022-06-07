@@ -179,7 +179,7 @@ public class PublishImageTextFragment extends BaseFragment implements PublishIma
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (R.id.nav_publish == item.getItemId()) {
-            shareClick();
+            onPublishClick();
             return true;
         } else return super.onOptionsItemSelected(item);
     }
@@ -189,7 +189,7 @@ public class PublishImageTextFragment extends BaseFragment implements PublishIma
      * 点击发布按钮
      */
     @OnClick(R.id.share_btn)
-    public void shareClick() {
+    public void onPublishClick() {
         mShareButton.setEnabled(false);
         // 数据验证
         String title = mTitleEditText.getText().toString().trim();

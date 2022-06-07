@@ -13,10 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.easyshare.R;
-import com.easyshare.adapter.ExploreRecommendAdapter;
+import com.easyshare.activity.DetailsImageTextActivity;
+import com.easyshare.adapter.ExploreAdapter;
 import com.easyshare.base.BaseException;
 import com.easyshare.base.BaseFragment;
 import com.easyshare.base.RxjavaThrowable;
+import com.easyshare.entity.PhotoAlbumEntity;
 import com.easyshare.network.RetrofitFactory;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -26,7 +28,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 @SuppressLint("NonConstantResourceId")
-public class ExploreFragment extends BaseFragment {
+public class ExploreFragment extends BaseFragment implements ExploreAdapter.OnClickListener {
 
     private ExploreViewModel mViewModel;
 
@@ -35,7 +37,7 @@ public class ExploreFragment extends BaseFragment {
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
 
-    ExploreRecommendAdapter adapter;
+    ExploreAdapter adapter;
 
     public static ExploreFragment newInstance() {
         return new ExploreFragment();
@@ -53,7 +55,8 @@ public class ExploreFragment extends BaseFragment {
         mViewModel = new ViewModelProvider(this).get(ExploreViewModel.class);
         // init RecyclerView
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new ExploreRecommendAdapter(mViewModel.getAlbumListData());
+        adapter = new ExploreAdapter(mViewModel.getAlbumListData());
+        adapter.setOnClickListener(this);
         mRecyclerView.setAdapter(adapter);
         // init observe
         mViewModel.observeAlbumListData(getViewLifecycleOwner(), list -> {
@@ -105,4 +108,31 @@ public class ExploreFragment extends BaseFragment {
         mDisposables.add(subscribe);
     }
 
+    /**
+     * 点击item项 -> 进入详情页
+     */
+    @Override
+    public void onClickItemListener(PhotoAlbumEntity entity) {
+        DetailsImageTextActivity.startActivity(getContext(),entity);
+    }
+
+    @Override
+    public void onClickMoreListener(PhotoAlbumEntity entity) {
+
+    }
+
+    @Override
+    public void onClickLikeListener(PhotoAlbumEntity entity) {
+
+    }
+
+    @Override
+    public void onClickCommentListener(PhotoAlbumEntity entity) {
+
+    }
+
+    @Override
+    public void onClickShareListener(PhotoAlbumEntity entity) {
+
+    }
 }

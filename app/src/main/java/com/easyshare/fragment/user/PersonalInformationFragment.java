@@ -203,7 +203,7 @@ public class PersonalInformationFragment extends BaseFragment implements OnPermi
     }
 
     /**
-     * 打开相机
+     * 打开相册
      */
     private void openPhotos() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);

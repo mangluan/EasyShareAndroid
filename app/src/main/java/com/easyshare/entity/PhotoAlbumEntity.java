@@ -1,9 +1,10 @@
 package com.easyshare.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class PhotoAlbumEntity {
+public class PhotoAlbumEntity implements Serializable {
 
     private int albumId;
     private int classificationId;

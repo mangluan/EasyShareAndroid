@@ -10,8 +10,8 @@ android {
         applicationId "com.easyshare"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 7
+        versionName "1.0.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
@@ -92,8 +92,11 @@ dependencies {
     // 新手教程 https://github.com/mreram/ShowCaseView
     implementation 'com.github.mreram:showcaseview:1.4.0'
     // 图片选择器 https://github.com/LuckSiege/PictureSelector
+    // PictureSelector 图片剪裁
     implementation 'io.github.lucksiege:pictureselector:v3.0.5' // PictureSelector 基础
 //    implementation 'io.github.lucksiege:compress:v3.0.5'    // 图片压缩
 //    implementation 'io.github.lucksiege:ucrop:v3.0.5'  // 图片裁剪
 //    implementation 'io.github.lucksiege:camerax:v3.0.5'  // 自定义相机
+    //
+    implementation 'com.github.LRH1993:AutoFlowLayout:1.0.5'
 }

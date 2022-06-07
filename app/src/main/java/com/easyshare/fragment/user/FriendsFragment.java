@@ -107,10 +107,13 @@ public class FriendsFragment extends BaseFragment implements FriendsAdapter.OnCl
                         if (pageIndex == 1) {
                             adapter.notifyDataSetChanged();
                             mSmartRefreshLayout.finishRefresh();
-                            mViewModel.setFriendListData(resp.getData());
-                            if (resp.getData().size() == 0) { // 显示没有数据提示
+                            if (resp.getData().size() == 0) {
                                 mSmartRefreshLayout.finishLoadMoreWithNoMoreData();
+                                adapter.setDataEmpty();
                             }
+                            getView().findViewById(R.id.text_no_data).setVisibility(
+                                    resp.getData().size() == 0 ? View.VISIBLE : View.INVISIBLE);
+                            mViewModel.setFriendListData(resp.getData());
                         } else if (resp.getData().size() != 0) {
                             mSmartRefreshLayout.finishLoadMore();
                             mViewModel.addFriendListData(resp.getData());

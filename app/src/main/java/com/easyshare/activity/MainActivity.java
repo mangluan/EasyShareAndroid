@@ -1,5 +1,7 @@
 package com.easyshare.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 
@@ -14,6 +16,8 @@ import com.easyshare.fragment.main.ExploreParentFragment;
 import com.easyshare.fragment.main.HomepageFragment;
 import com.easyshare.fragment.main.InformationFragment;
 import com.easyshare.fragment.main.MeFragment;
+import com.easyshare.network.Constants;
+import com.easyshare.utils.SharedPreferenceUtils;
 import com.easyshare.utils.UserUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hjq.toast.ToastUtils;
@@ -33,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_EasyShare_MainActivity);
+        if (debugActivity()) return;
+        initApplication();
         setContentView(R.layout.activity_main);
         // initialize view
         mViewPager = findViewById(R.id.view_pager);
@@ -101,9 +107,9 @@ public class MainActivity extends AppCompatActivity {
         });
         // 点击添加按钮
         findViewById(R.id.btn_main_add).setOnClickListener(v -> {
-            // TODO : TEST ACTIVITY
-            PublishImageTextActivity.startActivity(this);
-            if(true) return;
+//            PublishImageTextActivity.startActivity(this);
+//            PublishPhotoAlbumActivity.startActivity(this);
+//            if(true) return;
             if (UserUtils.getsInstance().isLogin()) {
                 if (UserUtils.getsInstance().getUserInfo().getLevel() == 0) {
                     // 直接打开发布图文页面
@@ -119,6 +125,24 @@ public class MainActivity extends AppCompatActivity {
                 LoginActivity.startActivity(this);
             }
         });
+    }
+
+    /**
+     * 是否初始化过应用了
+     */
+    private boolean initApplication() {
+        Boolean initApplication = SharedPreferenceUtils.getBoolean(this, Constants.IS_INITIALIZATION_APPLICATION, false);
+        if (!initApplication) OnBoardingActivity.startActivity(this);
+        return initApplication;
+    }
+
+    /**
+     * 测试Activity方法
+     */
+    private boolean debugActivity() {
+//        SelectClassificationActivity.startActivity(this);
+        return false;
+//        return true;
     }
 
     /**
@@ -141,5 +165,16 @@ public class MainActivity extends AppCompatActivity {
                 ).show();
     }
 
+    /**
+     * 跳转发现页面
+     */
+    public void onToExploreClick(){
+        mViewPager.setCurrentItem(1);
+    }
+
+    public static void startActivity(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
 
 }

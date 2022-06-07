@@ -31,6 +31,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
 
     private List<UserInfoEntity> mList;
     private FriendsActivity.FriendsType mType;
+    private boolean isEmpty = false;
 
     public FriendsAdapter(List<UserInfoEntity> mList, FriendsActivity.FriendsType type) {
         this.mList = mList;
@@ -72,9 +73,13 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
         }
     }
 
+    public void setDataEmpty(){
+        isEmpty = true;
+    }
+
     @Override
     public int getItemCount() {
-        return mList.size() == 0 ? NUMBER_OF_DEFAULT_PLACEHOLDERS : mList.size();
+        return mList.size() == 0  && !isEmpty ? NUMBER_OF_DEFAULT_PLACEHOLDERS : mList.size();
     }
 
     /**

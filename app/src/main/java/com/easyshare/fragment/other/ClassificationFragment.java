@@ -72,7 +72,7 @@ public class ClassificationFragment extends BaseFragment implements Classificati
      */
     private void initData() {
         Disposable subscribe = RetrofitFactory.getsInstance(getContext())
-                .getClassificationAdapter()
+                .getClassificationList()
                 .subscribeOn(Schedulers.io()) // 子线程执行方法
                 .observeOn(AndroidSchedulers.mainThread()) // 主线程回调
                 .subscribe(resp -> {   // 成功回调

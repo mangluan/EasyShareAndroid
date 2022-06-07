@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import com.easyshare.base.BaseActivity;
 import com.easyshare.fragment.user.PersonalInformationFragment;
 
+/**
+ * 个人信息
+ */
 public class PersonalInformationActivity extends BaseActivity {
 
     @Override

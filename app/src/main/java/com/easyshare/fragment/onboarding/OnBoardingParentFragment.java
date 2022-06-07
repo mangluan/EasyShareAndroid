@@ -20,7 +20,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.easyshare.R;
 import com.easyshare.activity.LoginActivity;
+import com.easyshare.activity.MainActivity;
 import com.easyshare.base.BaseFragment;
+import com.easyshare.network.Constants;
+import com.easyshare.utils.SharedPreferenceUtils;
 import com.easyshare.utils.StringUtils;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -156,6 +159,8 @@ public class OnBoardingParentFragment extends BaseFragment {
      */
     @OnClick(R.id.start_btn)
     public void onStartClick(){
+        SharedPreferenceUtils.putBoolean(getContext(), Constants.IS_INITIALIZATION_APPLICATION,true);
+//        MainActivity.startActivity(getContext());
         LoginActivity.startActivity(getContext());
         getActivity().finish();
     }

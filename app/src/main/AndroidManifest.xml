@@ -12,7 +12,6 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
@@ -27,6 +26,15 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE" />
+        </intent>
+    </queries>
 
     <application
         android:name=".base.EasyShareApplication"
@@ -74,6 +82,11 @@
             android:screenOrientation="locked"
             android:theme="@style/Theme.EasyShare.LightGrayStatusBar" />
         <activity
+            android:name=".activity.SelectClassificationActivity"
+            android:label="选择分类"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.EasyShare.LightGrayStatusBar" />
+        <activity
             android:name=".activity.FriendsActivity"
             android:label="关注|粉丝"
             android:screenOrientation="locked"
@@ -99,11 +112,16 @@
             android:screenOrientation="locked"
             android:theme="@style/Theme.EasyShare.WhiteTheme" />
         <activity
+            android:name=".activity.DetailsImageTextActivity"
+            android:label="图文详情"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.EasyShare.WhiteTheme" />
+        <activity
             android:name=".activity.PublishImageTextActivity"
             android:label="发布图文"
             android:screenOrientation="locked"
-            android:windowSoftInputMode="adjustPan|stateVisible"
-            android:theme="@style/Theme.EasyShare.WhiteTheme" />
+            android:theme="@style/Theme.EasyShare.WhiteTheme"
+            android:windowSoftInputMode="adjustPan|stateVisible" />
         <activity
             android:name=".activity.PublishPhotoAlbumActivity"
             android:label="发布图册"
@@ -112,6 +130,11 @@
         <activity
             android:name=".activity.ClassificationActivity"
             android:label="选择分类"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.EasyShare.WhiteTheme" />
+        <activity
+            android:name=".activity.SearchActivity"
+            android:label="搜索"
             android:screenOrientation="locked"
             android:theme="@style/Theme.EasyShare.WhiteTheme" />
         <activity
@@ -135,6 +158,11 @@
             android:label="图片剪裁"
             android:screenOrientation="locked"
             android:theme="@style/Theme.EasyShare.CropImage" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:label="图片剪裁"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -145,19 +173,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <activity
-            android:name="com.yalantis.ucrop.UCropActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
-
-    <queries>
-        <intent>
-            <action android:name="android.media.action.IMAGE_CAPTURE"/>
-        </intent>
-        <intent>
-            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE"/>
-        </intent>
-    </queries>
 
 </manifest>

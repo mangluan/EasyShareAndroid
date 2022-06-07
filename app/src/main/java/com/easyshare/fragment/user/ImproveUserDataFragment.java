@@ -24,10 +24,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.easyshare.R;
+import com.easyshare.base.BaseDataBean;
 import com.easyshare.base.BaseFragment;
 import com.easyshare.base.RxjavaResponse;
 import com.easyshare.base.RxjavaThrowable;
 import com.easyshare.base.ValueCallBack;
+import com.easyshare.network.Constants;
 import com.easyshare.network.RetrofitFactory;
 import com.easyshare.utils.FileUtils;
 import com.easyshare.utils.OSSUtils;
@@ -58,6 +60,8 @@ import io.reactivex.schedulers.Schedulers;
 
 import static android.app.Activity.RESULT_OK;
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * 注册后初始化基本用户信息页
@@ -152,7 +156,7 @@ public class ImproveUserDataFragment extends BaseFragment implements OnPermissio
 //                            int b = 20;
 //                        }, null, false, 0)
 //                .show();
-        getActivity().finish();
+        finish();
     }
 
 
@@ -324,13 +328,21 @@ public class ImproveUserDataFragment extends BaseFragment implements OnPermissio
                     RxjavaResponse.authentication(resp,getContext());
                     if (resp.getCode() == 0) {
                         ToastUtils.show(R.string.successfully_modify);
-                        getActivity().finish();
+                        finish();
                     } else {
                         ToastUtils.show(resp.getMsg());
                     }
                 }, (RxjavaThrowable) throwable -> {   // 出错回调
                 });
         mDisposables.add(subscribe);
+    }
+
+    /**
+     * 关闭页面
+     */
+    private void finish() {
+        EventBus.getDefault().post(BaseDataBean.build(Constants.OPEN_SELECT_CLASSIFICATION_ACTIVITY));
+        getActivity().finish();
     }
 
 }

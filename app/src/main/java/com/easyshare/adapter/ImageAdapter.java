@@ -1,5 +1,7 @@
 package com.easyshare.adapter;
 
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -64,7 +66,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Glide.with(holder.image).load(imagesUri.get(position)).into(holder.image);
+        Glide.with(holder.image).load(imagesUri.get(position))
+                .transition(withCrossFade()).into(holder.image);
     }
 
     @Override

@@ -2,6 +2,7 @@
     <string name="app_name">轻享</string>
 
     <string name="successfully_modify">修改成功</string>
+    <string name="successfully_setting">设置成功</string>
     <string name="successfully_upload">上传成功</string>
     <string name="successfully_logout">退出登录成功</string>
     <string name="successfully_clear_cache">清理成功</string>
@@ -114,13 +115,27 @@
     <string name="content">内容</string>
     <string name="classification">分类</string>
     <string name="display_style">显示样式</string>
+    <string name="add_content">添加内容</string>
     <string name="error_image_delete">至少保留一张图片哦~</string>
-    <string name="publish_image_text_title">添加说明...</string>
-    <string name="publish_image_text_title_hint">请添加图片说明</string>
+    <string name="publish_image_text_title">添加文字说明...</string>
+    <string name="publish_image_text_title_hint">请添加图片文字说明</string>
     <string name="display_style_complex">多图模式</string>
     <string name="display_style_simple">单图模式</string>
     <string name="please_choose">请选择</string>
     <string name="please_choose_classification">请选择分类</string>
     <string name="users_to_recommend">用户推荐：</string>
+    <string name="to_login">去登录</string>
+    <string name="main_to_explore">随便看看</string>
+    <string name="search_hint">请输入搜索内容</string>
+    <string name="search_history">搜索记录</string>
+    <string name="search_history_state_show">显示更多</string>
+    <string name="search_history_state_hide">隐藏</string>
+    <string name="clear_search_history">清空历史记录</string>
+    <string name="caption">文字说明：</string>
+    <string name="text_details_image_text">图文详情</string>
+    <string name="error_select_classification_over_maximum">最多选取六个分类</string>
+    <string name="select_classification_title">请选择感兴趣分类（最多选择六项）：</string>
+    <string name="select_classification_title_formart">请选择感兴趣分类（ %d / 6 ）：</string>
+    <string name="submit">提交</string>
 
 </resources>

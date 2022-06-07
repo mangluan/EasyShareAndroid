@@ -38,13 +38,24 @@
         android:background="@color/black_translucence_eighty"
         app:layout_constraintTop_toBottomOf="@id/RecyclerView" />
 
+    <TextView
+        android:id="@+id/title_hint"
+        app:layout_constraintTop_toBottomOf="@+id/cut_off_rule_0"
+        app:layout_constraintBottom_toTopOf="@+id/cut_off_rule_1"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="@string/title"
+        android:textColor="@color/black_translucence_eighty"
+        android:textSize="14sp" />
+
     <EditText
-        android:selectAllOnFocus="true"
-        android:focusedByDefault="true"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
+        app:layout_constraintStart_toEndOf="@+id/title_hint"
         android:id="@+id/et_title"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         android:layout_marginTop="24dp"
@@ -56,7 +67,6 @@
         android:paddingVertical="6dp"
         android:textColor="@color/black_translucence_eighty"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/RecyclerView" />
 
     <View

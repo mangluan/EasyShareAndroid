@@ -11,10 +11,11 @@ import androidx.room.util.StringUtil;
 
 import com.hjq.toast.ToastUtils;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity(tableName = "User_Info")
-public class UserInfoEntity {
+public class UserInfoEntity implements Serializable {
 
     @NonNull
     @PrimaryKey

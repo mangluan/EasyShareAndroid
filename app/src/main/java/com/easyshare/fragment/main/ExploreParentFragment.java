@@ -1,5 +1,7 @@
 package com.easyshare.fragment.main;
 
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
@@ -12,12 +14,18 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.easyshare.R;
+import com.easyshare.activity.SearchActivity;
+import com.easyshare.base.BaseDataBean;
 import com.easyshare.base.BaseFragment;
+import com.easyshare.entity.UserInfoEntity;
+import com.easyshare.network.Constants;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
@@ -26,11 +34,16 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerInd
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 @SuppressLint("NonConstantResourceId")
 public class ExploreParentFragment extends BaseFragment {
@@ -68,7 +81,6 @@ public class ExploreParentFragment extends BaseFragment {
                 ExploreFragment.newInstance(),
                 ExploreFragment.newInstance(),
                 ExploreFragment.newInstance(),
-                ExploreFragment.newInstance(),
                 ExploreFragment.newInstance()
         };
 //        mViewPager.setAdapter(new FragmentStateAdapter(getChildFragmentManager(),getLifecycle()) {
@@ -86,7 +98,7 @@ public class ExploreParentFragment extends BaseFragment {
         });
         // view page 指示器
         List<String> mTitleDataList = new ArrayList<>();
-        Collections.addAll(mTitleDataList, "热门", "搞笑", "美食", "学习", "美妆", "摄影", "动漫", "历史", "艺术", "科普", "生活");
+        Collections.addAll(mTitleDataList, "热门", "美食", "生活", "学习", "美妆", "摄影", "动漫", "历史", "艺术", "科普");
         CommonNavigatorAdapter commonNavigatorAdapter = new CommonNavigatorAdapter() {
 
             @Override
@@ -133,6 +145,22 @@ public class ExploreParentFragment extends BaseFragment {
                 mIndicator.onPageScrollStateChanged(state);
             }
         });
+    }
+
+    /**
+     * 点击 更多分类 TODO
+     */
+    @OnClick(R.id.btn_edit_group)
+    public void onClick(){
+        EventBus.getDefault().post(BaseDataBean.build(Constants.OPEN_SELECT_CLASSIFICATION_ACTIVITY));
+    }
+
+    /**
+     * 点击搜索，跳转 搜索页面
+     */
+    @OnClick(R.id.search_view)
+    public void onSearchClick(){
+        SearchActivity.startActivity(getContext());
     }
 
 }

@@ -109,11 +109,12 @@
             app:layout_constraintTop_toBottomOf="@+id/img_messages_at" />
 
         <TextView
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/img_messages_at"
             app:layout_constraintTop_toTopOf="@+id/img_messages_at"
             app:layout_constraintStart_toEndOf="@+id/img_messages_at"
             app:layout_constraintEnd_toEndOf="@+id/img_messages_at"
-            android:text="99+"
+            tools:text="99+"
             android:gravity="center"
             android:background="@drawable/shape_round_red_20"
             android:textColor="@color/white"
@@ -162,7 +163,8 @@
             app:layout_constraintTop_toTopOf="@+id/img_messages_like"
             app:layout_constraintStart_toEndOf="@+id/img_messages_like"
             app:layout_constraintEnd_toEndOf="@+id/img_messages_like"
-            android:text="11"
+            tools:text="11"
+            android:visibility="invisible"
             android:gravity="center"
             android:background="@drawable/shape_round_red_16"
             android:textColor="@color/white"
@@ -211,7 +213,8 @@
             app:layout_constraintTop_toTopOf="@+id/img_messages_comment"
             app:layout_constraintStart_toEndOf="@+id/img_messages_comment"
             app:layout_constraintEnd_toEndOf="@+id/img_messages_comment"
-            android:text="11"
+            tools:text="11"
+            android:visibility="invisible"
             android:gravity="center"
             android:background="@drawable/shape_round_red_16"
             android:textColor="@color/white"
@@ -262,7 +265,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_messages_empty_200"
+            android:src="@drawable/shape_no_messages"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

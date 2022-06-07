@@ -3,6 +3,7 @@ package com.easyshare.utils;
 
 import android.text.format.DateUtils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -21,6 +22,31 @@ public class RelativeDateFormatUtils {
     private static final String ONE_DAY_AGO = "天前";
     private static final String ONE_MONTH_AGO = "月前";
     private static final String ONE_YEAR_AGO = "年前";
+
+    /**
+     * 日期几秒前，几分钟前，几小时前，超过12小时则显示完整日期
+     */
+    public static String relativeDateFormat(String date) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+        try {
+
+            long delta = new Date().getTime() - simpleDateFormat.parse(date).getTime();
+            if (delta < ONE_MINUTE) {
+                return ONE_SECOND_AGO;
+            }
+            if (delta < 60L * ONE_MINUTE) {
+                long minutes = toMinutes(delta);
+                return (minutes <= 0 ? 1 : minutes) + ONE_MINUTE_AGO;
+            }
+            if (delta < 12L * ONE_HOUR) {
+                long hours = toHours(delta);
+                return (hours <= 0 ? 1 : hours) + ONE_HOUR_AGO;
+            }
+            return date;
+        } catch (ParseException e) {
+            return date;
+        }
+    }
 
     /**
      * 日期几秒前，几分钟前，几小时前，几天前，几月前，几年前格式化工具 格式化时间戳

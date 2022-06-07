@@ -108,6 +108,12 @@ public interface RetrofitService {
     Observable<BaseDataBean<Void>> appendAttention(@Query("friendId") String friendId);
 
     /**
+     * 获取主页推荐用户
+     */
+    @POST(Constants.URL_USER_GET_RECOMMEND_LIST)
+    Observable<BaseDataBean<List<UserInfoEntity>>> getUserRecommendList();
+
+    /**
      * 取消关注用户
      */
     @POST(Constants.URL_USER_CANCEL_ATTENTION)
@@ -123,6 +129,12 @@ public interface RetrofitService {
      * 获取全部分类
      */
     @POST(Constants.URL_CLASSIFICATION_GET_ALL_LIST)
-    Observable<BaseDataBean<List<ClassificationEntity>>> getClassificationAdapter();
+    Observable<BaseDataBean<List<ClassificationEntity>>> getClassificationList();
+
+    /**
+     * 设置分类喜好
+     */
+    @POST(Constants.URL_CLASSIFICATION_SET_PREFERENCES)
+    Observable<BaseDataBean<Void>> setClassificationPreferences(@Query("classification") String classificationIds);
 
 }

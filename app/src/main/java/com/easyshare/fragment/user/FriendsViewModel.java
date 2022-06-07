@@ -32,8 +32,8 @@ public class FriendsViewModel extends ViewModel {
         addFriendListData(friendListData);
     }
 
-    public void addFriendListData(List<UserInfoEntity> albumListData) {
-        mFriendListData.getValue().addAll(albumListData);
+    public void addFriendListData(List<UserInfoEntity> friendListData) {
+        mFriendListData.getValue().addAll(friendListData);
         mFriendListData.setValue(mFriendListData.getValue());
     }
 
